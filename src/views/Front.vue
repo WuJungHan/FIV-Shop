@@ -1,0 +1,76 @@
+<template>
+  <!-- 導覽列navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark my-navbar-bg">
+    <div class="container">
+      <router-link class="navbar-brand" to="/">FIV-logo</router-link>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/index">
+              FIV品牌首頁
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/products">
+              FIV手造
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/discount">
+              FIV優惠
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/shop">
+              FIV門市
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/cart">
+              購物車
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" aria-current="page" to="/login">
+              後台訂單管理
+            </router-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- 主顯示區塊前台子頁面用  -->
+  <router-view></router-view>
+  <!-- footer -->
+  <section class="bg-dark">
+    <div class="container text-center text-light">
+      <div class="row">
+        <div class="col pt-3">
+          <p><span>icon</span>,FIV made in 2021</p>
+          <p>僅作為個人作品，無任何商業用途，未經同意請勿轉載</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<style lang="scss">
+.my-navbar-bg{
+  background: linear-gradient(to right, #ffd89b, #19547b);
+}
+</style>
+
+<script>
+export default {};
+</script>
