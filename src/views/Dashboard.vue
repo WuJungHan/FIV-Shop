@@ -33,6 +33,14 @@
             >
           </li>
           <li>
+            <router-link
+              class="nav-link"
+              aria-current="page"
+              to="/coupon-set"
+              >折價卷設定</router-link
+            >
+          </li>
+          <li>
             <a href="#" class="nav-link" @click.prevent="signout">登出</a>
           </li>
         </ul>

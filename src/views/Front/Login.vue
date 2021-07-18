@@ -3,13 +3,13 @@
     <div class="row h100vh align-items-center justify-content-center">
       <div class="col-10 col-md-6 col-lg-4">
         <h1 class="text-center fs-1 mb-5">
-          Welcome to login
+          請登入後台系統
           <router-link class="" to="/">FIV5</router-link>
         </h1>
         <!-- 將type submit按鈕 預設為呼叫 axiosLogin函式-->
         <Form class="fs-5 text" v-slot="{ errors }" @submit="goToAdmin">
           <div class="mb-3">
-            <label for="email">E-mail</label>
+            <label for="email">帳號</label>
             <Field
               type="email"
               class="form-control"
@@ -25,7 +25,7 @@
             <div id="emailHelp" class="form-text text-warning fs-5"></div>
           </div>
           <div class="mb-5">
-            <label for="password">password</label>
+            <label for="password">密碼</label>
             <Field
               type="password"
               class="form-control"

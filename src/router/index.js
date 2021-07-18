@@ -17,6 +17,12 @@ const routes = [
     component: () => import('../views/Front.vue'),
     // 巢狀路由children
     children: [
+      // 前台主視覺頁面路由 若path為空值 直接顯示在父層的router-view
+      {
+        path: '',
+        // name: '',
+        component: () => import('../views/Front/MasterVision.vue'),
+      },
       // 前台產品列表頁面Products路由 若path為空值 直接顯示在父層的router-view
       {
         path: 'index',
@@ -35,23 +41,25 @@ const routes = [
         // name: '',
         component: () => import('../views/Front/Product.vue'),
       },
-      // 前台產品列表頁面discount路由
+      // 前台折價頁面discount路由
       {
         path: 'discount',
         // name: '',
         component: () => import('../views/Front/Discount.vue'),
       },
-      // 前台產品列表頁面Shope路由
+      // 前台商店頁面Shop路由
       {
         path: 'shop',
         // name: '',
         component: () => import('../views/Front/Shop.vue'),
       },
+      // 前台登入頁面login路由
       {
         path: 'login',
         // name: '',
         component: () => import('../views/Front/Login.vue'),
       },
+      // 前台購物車列表頁面cart路由
       {
         path: 'cart',
         // name: '',
@@ -67,14 +75,22 @@ const routes = [
     component: () => import('../views/Dashboard.vue'),
     children: [
       {
+        // 後台產品訂單頁面
         path: '/order-products',
         // name: '',
         component: () => import('../views/admin/OrderProducts.vue'),
       },
+      // 後台商品管理頁面
       {
         path: '/product-management',
         // name: '',
         component: () => import('../views/admin/ProductManagement.vue'),
+      },
+      // 後台折價卷設定頁面
+      {
+        path: '/coupon-set',
+        // name: '',
+        component: () => import('../views/admin/CouponSet.vue'),
       },
     ],
   },

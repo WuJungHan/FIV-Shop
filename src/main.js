@@ -2,7 +2,6 @@
 
 // 將外部套件引用
 import { createApp } from 'vue';
-
 // 將vue元件引用進來-請將node_modules資料夾的放前面 自己寫的放後面 不然會出錯
 // axios
 import axios from 'axios';
@@ -28,8 +27,6 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import App from './App.vue';
 // router
 import router from './router';
-// import Swiper JS
-// import Swiper from 'swiper';
 
 // vee-validate定義驗證規則
 // 將全部規則rules 載出來
@@ -62,5 +59,3 @@ app.component('Loading', Loading);
 app.use(VueAxios, axios);
 app.use(router);
 app.mount('#app');
-
-// const swiper = new Swiper(...)

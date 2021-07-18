@@ -1,4 +1,17 @@
-<template>單一產品頁{{ id }}</template>
+<template>
+  <main class="container mt-3">
+  <nav class="">
+    <div class="">
+      <router-link class=""
+      aria-current="page" to="/index">FIV品牌首頁</router-link>/
+      <router-link class=""
+      aria-current="page" to="/products">FIV手造</router-link>/
+      <router-link class=""
+      aria-current="page" to="/product/:id">FIV{{ id }}</router-link>
+    </div>
+    </nav>
+  </main>
+</template>
 
 <script>
 export default {
