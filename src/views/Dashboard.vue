@@ -2,7 +2,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container">
-      <router-link class="navbar-brand" to="/">FIV-logo</router-link>
+      <router-link class="navbar-brand" to="/">FIV5-logo</router-link>
       <button
         class="navbar-toggler"
         type="button"

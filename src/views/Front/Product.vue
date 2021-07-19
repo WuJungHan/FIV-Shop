@@ -3,11 +3,11 @@
   <nav class="">
     <div class="">
       <router-link class=""
-      aria-current="page" to="/index">FIV品牌首頁</router-link>/
+      aria-current="page" to="/index">FIV5品牌首頁</router-link>/
       <router-link class=""
-      aria-current="page" to="/products">FIV手造</router-link>/
+      aria-current="page" to="/products">FIV5手造</router-link>/
       <router-link class=""
-      aria-current="page" to="/product/:id">FIV{{ id }}</router-link>
+      aria-current="page" to="/product/:id">FIV5{{ id }}</router-link>
     </div>
     </nav>
   </main>

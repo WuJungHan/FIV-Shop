@@ -3,9 +3,9 @@
   <nav class="">
     <div class="">
       <router-link class=""
-      aria-current="page" to="/index">FIV品牌首頁</router-link>/
+      aria-current="page" to="/index">FIV5品牌首頁</router-link>/
       <router-link class=""
-      aria-current="page" to="/cart">FIV購物車</router-link>
+      aria-current="page" to="/cart">FIV5購物車</router-link>
     </div>
     </nav>
   </main>

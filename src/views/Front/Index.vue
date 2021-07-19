@@ -59,7 +59,7 @@
               fw-bold
             "
           >
-            FIV-戒指
+            FIV5-戒指
           </button>
         </li>
         <li
@@ -84,7 +84,7 @@
               fw-bold
             "
           >
-            FIV-對戒
+            FIV5-對戒
           </button>
         </li>
         <li
@@ -110,7 +110,7 @@
               fw-bold
             "
           >
-            FIV-手鐲
+            FIV5-手鐲
           </button>
         </li>
         <li
@@ -136,19 +136,19 @@
               fw-bold
             "
           >
-            FIV-項鍊
+            FIV5-項鍊
           </button>
         </li>
       </ul>
     </div>
-    <!-- index FIV 品牌區塊 -->
+    <!-- index FIV5 品牌區塊 -->
     <section class="container mt-3">
-      <h2>FIV品牌館</h2>
+      <h2>FIV5品牌館</h2>
       <div class="border-top border-bottom">123</div>
     </section>
     <!-- index 產品圖片 -->
     <section class="container mt-3">
-      <h2>FIV手造</h2>
+      <h2>FIV5手造</h2>
       <div class="border-top border-bottom">123</div>
     </section>
     <!-- index 訂閱區塊 -->

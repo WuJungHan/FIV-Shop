@@ -2,7 +2,7 @@
   <!-- 導覽列navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark my-navbar-bg">
     <div class="container">
-      <router-link class="navbar-brand" to="/">FIV-logo</router-link>
+      <router-link class="navbar-brand" to="/">FIV5-logo</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -18,22 +18,22 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/index">
-              FIV品牌首頁
+              FIV5品牌首頁
             </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/products">
-              FIV手造
+              FIV5手造
             </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/discount">
-              FIV優惠
+              FIV5優惠
             </router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/shop">
-              FIV門市
+              FIV5門市
             </router-link>
           </li>
           <li class="nav-item">
@@ -58,7 +58,7 @@
     <div class="container text-center text-light">
       <div class="row">
         <div class="col pt-3">
-          <p><span>icon</span>,FIV made in 2021</p>
+          <p><span>icon</span>,FIV5 made in 2021</p>
           <p>僅作為個人作品，無任何商業用途，未經同意請勿轉載</p>
         </div>
       </div>

@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/FIV-Shop/dist/',
+  publicPath: '/FIV5-Shop/dist/',
 };

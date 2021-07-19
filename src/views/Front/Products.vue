@@ -3,10 +3,10 @@
     <nav class="d-flex justify-content-between">
       <div class="">
         <router-link class="" aria-current="page" to="/index"
-          >FIV品牌首頁</router-link
+          >FIV5品牌首頁</router-link
         >/
         <router-link class="" aria-current="page" to="/products"
-          >FIV手造</router-link
+          >FIV5手造</router-link
         >
       </div>
       <div class="d-flex d-none d-md-block">
@@ -28,7 +28,7 @@
             <li>
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-2 pb-2"
+                class="list-group-item list-group-item-action pt-3 pb-3 fs-3 fw-bold"
                 aria-current="true"
               >
                 全部商品
@@ -37,7 +37,7 @@
             <li class="">
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-2 pb-2"
+                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
               >
                 手造戒指
@@ -46,7 +46,7 @@
             <li class="">
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-2 pb-2"
+                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
               >
                 手造對戒
@@ -55,7 +55,7 @@
             <li class="">
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-2 pb-2"
+                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
               >
                 手造手鐲
@@ -64,7 +64,7 @@
             <li class="">
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-2 pb-2"
+                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
               >
                 手造項鍊
@@ -78,23 +78,24 @@
           <div
             v-for="item in products"
             :key="item.id"
-            class="card mb-3 me-5"
+            class="card mb-3 me-5  my-card"
             style="width: 18rem"
           >
-            <img src="" class="card-img-top" alt="..." />
+          <!-- card img -->
+          <div class="my-card-img-div">
+            <img :src="item.imageUrl" class="card-img-top  my-card-img" alt="..." />
+          </div>
             <div class="card-body">
-              <h5 class="card-title">{{ item.title }}</h5>
+              <h5 class="card-title border-bottom pb-2">{{ item.title }}</h5>
               <p class="card-text">
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              <button
-                type="button"
-                class="btn btn-primary"
-                @click="goToProductPage(item)"
-              >
-                立即選購
-              </button>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  <button class="btn btn-outline-primary me-md-2" type="button"
+    @click="goToProductPage(item)">產品詳情</button>
+  <button class="btn btn-primary" type="button">立即選購</button>
+</div>
             </div>
           </div>
       </div>
@@ -103,8 +104,26 @@
 </template>
 
 <style lang="scss">
+.my-card{
+  transition:0.5s;
+  &:hover{
+    box-shadow: 0px 0px 10px #464e46;
+  }
+}
 .my-card-width{
   width: 33%;
+}
+.my-card-img-div{
+  overflow: hidden;
+}
+.my-card-img{
+  width: 100%;
+  height: 250px;
+  transform:scale(1,1);
+  transition:0.5s;
+  &:hover{
+    transform:scale(1.2,1.2);
+  }
 }
 </style>
 

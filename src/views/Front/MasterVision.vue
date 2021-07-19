@@ -11,8 +11,8 @@
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem, obcaecati.</p>
           <div class="d-flex justify-content-center mt-5">
             <!-- 連結區塊 -->
-          <router-link class="btn brand-btn" to="/index">FIV品牌</router-link>
-          <router-link class="btn product-btn" to="/products">FIV產品</router-link>
+          <router-link class="btn brand-btn" to="/index">FIV5品牌</router-link>
+          <router-link class="btn product-btn" to="/products">FIV5產品</router-link>
           </div>
         </div>
       </div>
