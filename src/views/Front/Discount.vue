@@ -1,6 +1,6 @@
 <template>
 <main class="container mt-3">
-  <nav class="">
+  <nav class="border-bottom pb-3 mb-3">
     <div class="">
       <router-link class=""
       aria-current="page" to="/index">FIV5品牌首頁</router-link>/

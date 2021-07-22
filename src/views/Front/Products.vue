@@ -1,6 +1,7 @@
 <template>
   <main class="container mt-3">
-    <nav class="d-flex justify-content-between">
+    <Loading></Loading>
+    <nav class="d-flex justify-content-between border-bottom">
       <div class="">
         <router-link class="" aria-current="page" to="/index"
           >FIV5品牌首頁</router-link
@@ -28,8 +29,9 @@
             <li>
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-3 pb-3 fs-3 fw-bold"
+                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
+                @click="getProducts()"
               >
                 全部商品
               </button>
@@ -39,6 +41,7 @@
                 type="button"
                 class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
+                @click="getRingProducts()"
               >
                 手造戒指
               </button>
@@ -48,6 +51,7 @@
                 type="button"
                 class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
+                @click="getLoversRingProducts()"
               >
                 手造對戒
               </button>
@@ -57,6 +61,7 @@
                 type="button"
                 class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
+                @click="getBraceletProducts()"
               >
                 手造手鐲
               </button>
@@ -66,6 +71,7 @@
                 type="button"
                 class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
                 aria-current="true"
+                @click="getNecklaceProducts()"
               >
                 手造項鍊
               </button>
@@ -78,7 +84,7 @@
           <div
             v-for="item in products"
             :key="item.id"
-            class="card mb-3 me-5  my-card"
+            class="card mb-3 me-5  my-card animate__animated animate__fadeIn"
             style="width: 18rem"
           >
           <!-- card img -->
@@ -88,6 +94,7 @@
             <div class="card-body">
               <h5 class="card-title border-bottom pb-2">{{ item.title }}</h5>
               <p class="card-text">
+                {{ item.category }}
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
@@ -130,23 +137,74 @@
 <script>
 // ../../上上層
 // import Card from '../../components/Card.vue';
+// padeLoading component
+import Loading from '../../components/PageLoading.vue';
 
 export default {
   // 區域註冊元件
-  // components: {
-  //   Card,
-  // },
+  components: {
+    // Card,
+    Loading,
+  },
   data() {
     return {
       products: [],
+      categoryProducts: [],
     };
   },
   methods: {
+    getProducts() {
+      this.products = this.categoryProducts;
+    },
     goToProductPage(item) {
       // 使用this.$router 調用push方法 轉頁
       // console.log(this.$router);
       // console.log(item);
       this.$router.push(`/product/${item.id}`);
+    },
+    getRingProducts() {
+      const arr = [];
+      this.categoryProducts.forEach((item) => {
+        if (item.category === '戒指') {
+          arr.push(item);
+        }
+      });
+      // console.log(arr);
+      this.products = arr;
+      // console.log(this.products);
+    },
+    getLoversRingProducts() {
+      const arr = [];
+      this.categoryProducts.forEach((item) => {
+        if (item.category === '對戒') {
+          arr.push(item);
+        }
+      });
+      // console.log(arr);
+      this.products = arr;
+      // console.log(this.products);
+    },
+    getBraceletProducts() {
+      const arr = [];
+      this.categoryProducts.forEach((item) => {
+        if (item.category === '手鐲') {
+          arr.push(item);
+        }
+      });
+      // console.log(arr);
+      this.products = arr;
+      // console.log(this.products);
+    },
+    getNecklaceProducts() {
+      const arr = [];
+      this.categoryProducts.forEach((item) => {
+        if (item.category === '項鍊') {
+          arr.push(item);
+        }
+      });
+      // console.log(arr);
+      this.products = arr;
+      // console.log(this.products);
     },
   },
   created() {
@@ -159,6 +217,7 @@ export default {
       .then((res) => {
         // console.log(res);
         this.products = res.data.products;
+        this.categoryProducts = res.data.products;
         // console.log(this.products);
       })
       .catch((err) => {

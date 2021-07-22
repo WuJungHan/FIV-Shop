@@ -8,6 +8,9 @@ import axios from 'axios';
 // VueAxios
 import VueAxios from 'vue-axios';
 
+// VueYoutube
+// import VueYoutube from 'vue-youtube';
+
 // vue3-loading-overlay
 import Loading from 'vue3-loading-overlay';
 // vue3-loading-overlay
@@ -56,6 +59,7 @@ app.component('ErrorMessage', ErrorMessage);
 app.component('Loading', Loading);
 
 // 啟用
+// app.use(VueYoutube);
 app.use(VueAxios, axios);
 app.use(router);
 app.mount('#app');

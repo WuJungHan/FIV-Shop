@@ -1,6 +1,8 @@
 <template>
+<main class="position-relative">
+
   <!-- 導覽列navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark my-navbar-bg">
+  <nav class="navbar navbar-expand-lg navbar-dark my-navbar-bg position-sticky top-0">
     <div class="container">
       <router-link class="navbar-brand" to="/">FIV5-logo</router-link>
       <button
@@ -36,9 +38,12 @@
               FIV5門市
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item position-relative">
             <router-link class="nav-link" aria-current="page" to="/cart">
-              購物車
+              購物車<span class="position-absolute top-0
+              start-100 translate-middle badge
+              rounded-pill bg-secondary">
+              +99 <span class="visually-hidden">unread messages</span></span>
             </router-link>
           </li>
           <li class="nav-item">
@@ -50,7 +55,6 @@
       </div>
     </div>
   </nav>
-
   <!-- 主顯示區塊前台子頁面用  -->
   <router-view></router-view>
   <!-- footer -->
@@ -64,14 +68,13 @@
       </div>
     </div>
   </section>
+  </main>
 </template>
 
 <style lang="scss">
-.h100vh{
-  height: 100vh;
-}
 .my-navbar-bg{
   background: linear-gradient(to right, #ffd89b, #19547b);
+  z-index: 999;
 }
 .front-bg{
   width: 100%;
@@ -81,7 +84,7 @@
   url(https://images.unsplash.com/photo-1506806732259-39c2d0268443?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80)no-repeat center/100% 100%;
 }
 .front-text-bg{
-  height: 300px;
+  height: 100px;
   background: rgba(255, 252, 252, 0.3);
 }
 .brand-btn{
@@ -99,5 +102,10 @@
 </style>
 
 <script>
-export default {};
+
+export default {
+  // 區域註冊元件
+  components: {
+  },
+};
 </script>

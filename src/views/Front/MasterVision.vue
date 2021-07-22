@@ -6,7 +6,7 @@
         <div class="col-0 col-md-8">
         </div>
         <!-- 文字區塊 -->
-        <div class="col-12 col-md-4 front-text-bg rounded-3 p-3">
+        <div class="col-12 col-md-4 front-text-bg rounded-3 p-3 animate__animated animate__fadeIn">
           <h1>Lorem ipsum dolor sit amet</h1>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem, obcaecati.</p>
           <div class="d-flex justify-content-center mt-5">
