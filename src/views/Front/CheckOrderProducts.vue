@@ -26,8 +26,8 @@
       <th scope="col" class="text-center">商品資訊</th>
       <th scope="col">商品名稱</th>
       <th scope="col">數量</th>
-      <th scope="col">單價</th>
-      <th scope="col">折扣價</th>
+      <th scope="col" class="d-none d-md-table-cell">單價</th>
+      <th scope="col" class="d-none d-md-table-cell">折扣價</th>
       <th scope="col">小計</th>
       <th scope="col">刪除</th>
     </tr>
@@ -35,15 +35,17 @@
   <tbody>
     <tr v-for="item in cartProduct" :key="item.id">
       <td class="d-flex align-items-center">
-        <img :src="item.product.imageUrl" alt="" style="width:150px;height:150px;">
+        <!-- <img :src="item.product.imageUrl" alt="" style="width:150px;height:150px;"> -->
+        <div style="width:150px;height:150px; background-size: cover; background-position: center"
+            :style="{ 'background-image' : `url(${item.product.imageUrl})`}"></div>
       </td>
       <td>{{ item.product.title }}</td>
-      <td>{{ item.qty}}</td>
-      <td>{{ item.product.origin_price }}</td>
-      <td>{{ item.product.price }}</td>
+      <td><input min="1" max="99" type="number" v-model.number="item.qty" class="form-control"></td>
+      <td class="d-none d-md-table-cell">{{ item.product.origin_price }}</td>
+      <td class="d-none d-md-table-cell">{{ item.product.price }}</td>
       <td>{{ item.total }}</td>
       <td>
-        <button type="button" class="btn btn-primary">刪除</button>
+        <button type="button" class="btn btn-primary" @click="deleteProduct(item.id)">刪除</button>
       </td>
     </tr>
   </tbody>
@@ -56,8 +58,9 @@
       <div class="col-12 col-md-4">總金額:{{ countPrice }}</div>
     </div>
     <!-- 下一步 -->
-    <div>
-      <div>
+    <div class="mb-3">
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-primary" @click="deleteAllProducts">清空購物車</button>
         <router-link class="btn btn-primary" to="/check-orderer">下一步</router-link>
       </div>
     </div>
@@ -92,10 +95,14 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res.data.data.carts);
-          this.cartProduct = res.data.data.carts;
-          // console.log(this.cartProduct);
-          // console.log(typeof this.cartProduct);
+          if (res.data.success) {
+            // console.log(res.data.data.carts);
+            this.cartProduct = res.data.data.carts;
+            // console.log(this.cartProduct);
+            // console.log(typeof this.cartProduct);
+          } else {
+            alert(res.data.message);
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -109,11 +116,58 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          // console.log(res.data.data.carts);
-          res.data.data.carts.forEach((item) => {
-            this.countPrice += item.final_total;
-          });
-          // console.log(this.countPrice);
+          if (res.data.success) {
+            // console.log(res.data.data.carts);
+            res.data.data.carts.forEach((item) => {
+              this.countPrice += item.final_total;
+            });
+            // console.log(this.countPrice);
+          } else {
+            alert(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    deleteProduct(id) {
+      // 客戶購物 [免驗證]-刪除某一筆購物車資料
+      // /api/:api_path/cart/:id
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`;
+      // console.log(url);
+      this.$http.delete(url)
+        .then((res) => {
+          if (res.data.success) {
+            // 如果成功 跳出提示
+            alert(res.data.message);
+            this.getCartList();
+            this.countPrice = 0;
+            this.countAllPrice();
+          } else {
+            // 如果未成功加入 跳出提示
+            alert(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    deleteAllProducts() {
+      // 客戶購物 [免驗證]-刪除全部購物車
+      // [API]: /api/:api_path/carts
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`;
+      this.$http.delete(url)
+        .then((res) => {
+          if (res.data.success) {
+            // 如果成功 跳出提示
+            alert(res.data.message);
+            this.getCartList();
+            this.countPrice = 0;
+            this.countAllPrice();
+          } else {
+            // 如果未成功加入 跳出提示
+            alert(res.data.message);
+          }
         })
         .catch((err) => {
           console.log(err);

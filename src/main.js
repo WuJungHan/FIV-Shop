@@ -8,6 +8,10 @@ import axios from 'axios';
 // VueAxios
 import VueAxios from 'vue-axios';
 
+// jquery bootstrap
+import $ from 'jquery';
+import 'bootstrap';
+
 // VueYoutube
 // import VueYoutube from 'vue-youtube';
 
@@ -30,6 +34,8 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import App from './App.vue';
 // router
 import router from './router';
+
+window.$ = $;
 
 // vee-validate定義驗證規則
 // 將全部規則rules 載出來

@@ -7,12 +7,12 @@
         </div>
         <!-- 文字區塊 -->
         <div class="col-12 col-md-4 front-text-bg rounded-3 p-3 animate__animated animate__fadeIn">
-          <h1>Lorem ipsum dolor sit amet</h1>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem, obcaecati.</p>
+          <h2>找尋只屬於妳的手造</h2>
+          <p class="fs-5">在茫茫物海中，透過火焰的溫度，與手造的靈活，創造與眾不同。</p>
           <div class="d-flex justify-content-center mt-5">
             <!-- 連結區塊 -->
-          <router-link class="btn brand-btn" to="/index">FIV5品牌</router-link>
-          <router-link class="btn product-btn" to="/products">FIV5產品</router-link>
+          <router-link class="btn btn-secondary me-3" to="/index">FIV5品牌</router-link>
+          <router-link class="btn btn-success " to="/products">FIV5產品</router-link>
           </div>
         </div>
       </div>
@@ -34,17 +34,5 @@
 .front-text-bg{
   height: 300px;
   background: rgba(255, 252, 252, 0.3);
-}
-.brand-btn{
-  background: #ffd89b;
-  &:hover{
-    background: #c7a979;
-  }
-}
-.product-btn{
-  background: #19547b;
-  &:hover{
-    background: #123d5a;
-  }
 }
 </style>

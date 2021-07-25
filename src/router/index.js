@@ -75,6 +75,16 @@ const routes = [
             // name: '',
             component: () => import('../views/Front/CheckOrderer.vue'),
           },
+          {
+            path: '/check-order-complete',
+            // name: '',
+            component: () => import('../views/Front/CheckOrderComplete.vue'),
+          },
+          {
+            path: '/order-complete',
+            // name: '',
+            component: () => import('../views/Front/OrderComplete.vue'),
+          },
         ],
       },
     ],
@@ -119,6 +129,13 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  // 每次轉換router-view 都移到畫面最上方
+  scrollBehavior() {
+    return {
+      top: 0,
+      behavior: 'smooth',
+    };
+  },
 });
 
 export default router;

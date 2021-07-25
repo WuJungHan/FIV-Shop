@@ -4,7 +4,7 @@
   <!-- 導覽列navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark my-navbar-bg position-sticky top-0">
     <div class="container">
-      <router-link class="navbar-brand" to="/">FIV5-logo</router-link>
+      <router-link class="navbar-brand caveat fs-1" to="/">FIV5</router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -13,11 +13,13 @@
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
+
       >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav me-auto my-2 my-lg-0"
+        style="--bs-scroll-height: 100px;">
           <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/index">
               FIV5品牌首頁
@@ -38,6 +40,8 @@
               FIV5門市
             </router-link>
           </li>
+        </ul>
+        <ul class="d-flex">
           <li class="nav-item position-relative">
             <router-link class="nav-link" aria-current="page" to="/cart">
               購物車<span class="position-absolute top-0
@@ -72,6 +76,10 @@
 </template>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+.caveat{
+  font-family:  'Caveat', cursive;
+}
 .my-navbar-bg{
   background: linear-gradient(to right, #ffd89b, #19547b);
   z-index: 999;
@@ -106,6 +114,13 @@
 export default {
   // 區域註冊元件
   components: {
+  },
+  data() {
+    return {
+      user: {
+        xy: 1,
+      },
+    };
   },
 };
 </script>

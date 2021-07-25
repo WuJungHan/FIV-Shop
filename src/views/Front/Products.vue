@@ -87,9 +87,12 @@
             class="card mb-3 me-5  my-card animate__animated animate__fadeIn"
             style="width: 18rem"
           >
-          <!-- card img -->
+          <!-- card background-image -->
           <div class="my-card-img-div">
-            <img :src="item.imageUrl" class="card-img-top  my-card-img" alt="..." />
+            <!-- <img :src="item.imageUrl" class="card-img-top  my-card-img" alt="..." /> -->
+            <div class="card-img-top my-card-img"
+            style="height: 220px; background-size: cover; background-position: center"
+            :style="{ 'background-image' : `url(${item.imageUrl})`}"></div>
           </div>
             <div class="card-body">
               <h5 class="card-title border-bottom pb-2">{{ item.title }}</h5>
@@ -101,7 +104,7 @@
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
   <button class="btn btn-outline-primary me-md-2" type="button"
     @click="goToProductPage(item)">產品詳情</button>
-  <button class="btn btn-primary" type="button">立即選購</button>
+  <button class="btn btn-primary" type="button" @click="addCart(item.id)">立即選購</button>
 </div>
             </div>
           </div>
@@ -205,6 +208,30 @@ export default {
       // console.log(arr);
       this.products = arr;
       // console.log(this.products);
+    },
+    addCart(id, _qty = 1) {
+      // 客戶購物 [免驗證]-加入購物車
+      // [API]: /api/:api_path/cart
+      // [參數]: { "data": { "product_id":"-L9tH8jxVb2Ka_DYPwng","qty":1 } }
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      const cart = {
+        product_id: id,
+        qty: _qty,
+      };
+      // console.log(url, { data: cart });
+      this.$http.post(url, { data: cart })
+        .then((res) => {
+          if (res.data.success) {
+            // 如果成功 跳出提示
+            alert(res.data.message);
+          } else {
+            // 如果未成功加入 跳出提示
+            alert(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   created() {
