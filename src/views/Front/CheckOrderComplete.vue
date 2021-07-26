@@ -50,23 +50,23 @@
   <tbody class="text-start">
     <tr class="bg-secondary row">
       <td class="col-4 fw-bold">姓名：</td>
-      <td class="col-8">1</td>
+      <td class="col-8">{{ name }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">電話：</td>
-      <td class="col-8">1</td>
+      <td class="col-8">{{ tel }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">地址：</td>
-      <td class="col-8">1</td>
+      <td class="col-8">{{ address }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">信箱：</td>
-      <td class="col-8">1</td>
+      <td class="col-8">{{ email }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">備註：</td>
-      <td class="col-8">1</td>
+      <td class="col-8">{{ message }}</td>
     </tr>
   </tbody>
       </table>
@@ -76,6 +76,7 @@
     <div class="mb-3">
       <div class="d-flex justify-content-between">
         <router-link class="btn btn-primary" to="/check-orderer">回上頁</router-link>
+        <btn class="btn btn-primary" @click="finishCheckOut">123</btn>
         <btn class="btn btn-primary" @click="goToCheckOrderer">完成訂單</btn>
       </div>
     </div>
@@ -97,6 +98,15 @@ export default {
     return {
       cartProduct: [],
       countPrice: 0,
+      data: {
+        user: {
+          email: '',
+          name: '',
+          tel: '',
+          address: '',
+        },
+        message: '',
+      },
     };
   },
   methods: {
@@ -146,10 +156,26 @@ export default {
     goToCheckOrderer() {
       this.$router.push('/order-complete');
     },
+    receiveQuery() {
+      this.message = this.$route.query.message;
+      this.email = this.$route.query.email;
+      this.name = this.$route.query.name;
+      this.tel = this.$route.query.tel;
+      this.address = this.$route.query.address;
+    },
+    finishCheckOut() {
+      // 客戶購物 [免驗證]-結帳頁面
+      // [API]: /api/:api_path/order [方法]: post
+      // const data = {};
+      console.log(this);
+      console.log(this.data);
+    },
   },
   created() {
     this.getCartList();
     this.countAllPrice();
+    this.receiveQuery();
+    // console.log(this.email);
   },
 };
 </script>

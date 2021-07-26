@@ -43,7 +43,7 @@
         </ul>
         <ul class="d-flex">
           <li class="nav-item position-relative">
-            <router-link class="nav-link" aria-current="page" to="/cart">
+            <router-link class="nav-link text-white" aria-current="page" to="/cart">
               購物車<span class="position-absolute top-0
               start-100 translate-middle badge
               rounded-pill bg-secondary">
@@ -51,7 +51,7 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" aria-current="page" to="/login">
+            <router-link class="nav-link text-white" aria-current="page" to="/login">
               後台訂單管理
             </router-link>
           </li>
@@ -117,9 +117,6 @@ export default {
   },
   data() {
     return {
-      user: {
-        xy: 1,
-      },
     };
   },
 };

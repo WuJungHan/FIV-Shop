@@ -148,7 +148,19 @@ export default {
   methods: {
     goToCheckOrderComplete() {
       if (this.data.user.email !== '' && this.data.user.name !== '' && this.data.user.tel !== '' && this.data.user.address !== '') {
-        this.$router.push('check-order-complete');
+        // console.log(this.$data.data);
+        const { message } = this.$data.data;
+        const { address } = this.$data.data.user;
+        const { email } = this.$data.data.user;
+        const { name } = this.$data.data.user;
+        const { tel } = this.$data.data.user;
+        // console.log(this.$data.data.user.address);
+        this.$router.push({
+          path: '/check-order-complete',
+          query: {
+            message, address, email, name, tel,
+          },
+        });
       } else {
         alert('請將資料填寫完畢');
       }
