@@ -50,23 +50,23 @@
   <tbody class="text-start">
     <tr class="bg-secondary row">
       <td class="col-4 fw-bold">姓名：</td>
-      <td class="col-8">{{ name }}</td>
+      <td class="col-8">{{ data.user.name }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">電話：</td>
-      <td class="col-8">{{ tel }}</td>
+      <td class="col-8">{{ data.user.tel }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">地址：</td>
-      <td class="col-8">{{ address }}</td>
+      <td class="col-8">{{ data.user.address }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">信箱：</td>
-      <td class="col-8">{{ email }}</td>
+      <td class="col-8">{{ data.user.email }}</td>
     </tr>
     <tr class="row">
       <td class="col-4 fw-bold">備註：</td>
-      <td class="col-8">{{ message }}</td>
+      <td class="col-8">{{ data.message }}</td>
     </tr>
   </tbody>
       </table>
@@ -157,16 +157,15 @@ export default {
       this.$router.push('/order-complete');
     },
     receiveQuery() {
-      this.user.message = this.$route.query.message;
-      this.user.email = this.$route.query.email;
-      this.user.name = this.$route.query.name;
-      this.user.tel = this.$route.query.tel;
-      this.user.address = this.$route.query.address;
+      this.data.message = this.$route.query.message;
+      this.data.user.email = this.$route.query.email;
+      this.data.user.name = this.$route.query.name;
+      this.data.user.tel = this.$route.query.tel;
+      this.data.user.address = this.$route.query.address;
     },
     finishCheckOut() {
       // 客戶購物 [免驗證]-結帳頁面
       // [API]: /api/:api_path/order [方法]: post
-      // const data = {};
       // console.log(this);
       console.log(this.data);
     },
