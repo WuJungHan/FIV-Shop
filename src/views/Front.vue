@@ -30,11 +30,11 @@
               FIV5手造
             </router-link>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/discount">
               FIV5優惠
             </router-link>
-          </li>
+          </li> -->
           <li class="nav-item">
             <router-link class="nav-link" aria-current="page" to="/shop">
               FIV5門市

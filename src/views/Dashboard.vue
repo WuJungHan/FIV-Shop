@@ -32,14 +32,14 @@
               >後台產品管理</router-link
             >
           </li>
-          <li>
+          <!-- <li>
             <router-link
               class="nav-link"
               aria-current="page"
               to="/coupon-set"
               >折價卷設定</router-link
             >
-          </li>
+          </li> -->
           <li>
             <button type="button" class="btn nav-link" @click="signout">登出</button>
           </li>
