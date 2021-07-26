@@ -157,17 +157,17 @@ export default {
       this.$router.push('/order-complete');
     },
     receiveQuery() {
-      this.message = this.$route.query.message;
-      this.email = this.$route.query.email;
-      this.name = this.$route.query.name;
-      this.tel = this.$route.query.tel;
-      this.address = this.$route.query.address;
+      this.user.message = this.$route.query.message;
+      this.user.email = this.$route.query.email;
+      this.user.name = this.$route.query.name;
+      this.user.tel = this.$route.query.tel;
+      this.user.address = this.$route.query.address;
     },
     finishCheckOut() {
       // 客戶購物 [免驗證]-結帳頁面
       // [API]: /api/:api_path/order [方法]: post
       // const data = {};
-      console.log(this);
+      // console.log(this);
       console.log(this.data);
     },
   },
