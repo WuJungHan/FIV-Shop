@@ -95,7 +95,7 @@ export default {
             // 儲存token跟expired到本地cookie,new Date(expired)可以將expired轉成日期格式
             document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
             // 登入成功跳轉路由
-            this.$router.push('/order-products');
+            this.$router.push('/orders');
           } else {
             // console.log(res.data.message);;
             // 驗證data.message 狀態顯示

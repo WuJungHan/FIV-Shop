@@ -26,11 +26,13 @@
         <p>{{ product.category }}</p>
         <h3>{{ product.description }}</h3>
         <p>{{ product.content }}</p>
-        <p>原價:{{ product.origin_price }}<span>特價:{{ product.price }}</span></p>
+        <p>原價:<span class="line-through">{{ product.origin_price }}</span>
+              特價:<span class="text-danger fw-bold fs-5">{{ product.price }}</span></p>
         <p>數量:
           <input min="1" max="99" type="number" class="" v-model.number="qty">
         </p>
-        <button class="btn btn-primary" @click="addCart()">加入購物車</button>
+        <button class="btn btn-success me-3" @click="addCart()">加入購物車</button>
+        <router-link class="btn btn-primary" to="/products">回上頁</router-link>
         </div>
       </div>
     </div>
@@ -38,7 +40,9 @@
 </template>
 
 <style lang="scss">
-
+.line-through{
+  text-decoration:line-through;
+}
 </style>
 
 <script>

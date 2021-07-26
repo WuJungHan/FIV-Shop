@@ -231,8 +231,7 @@
         <div class="col-12 col-md-6  d-flex flex-column justify-content-center">
           <div class="">
           <h3 class="fw-bold">每鍛傳奇，造就不斐</h3>
-          <p>Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Reprehenderit nostrum sed autem labore modi eos!</p>
+          <p>千錘百鍊，匠魂鍛造，方能永垂不朽！</p>
           </div>
         </div>
       </div>

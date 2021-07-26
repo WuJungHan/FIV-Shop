@@ -95,18 +95,18 @@
             :style="{ 'background-image' : `url(${item.imageUrl})`}"></div>
           </div>
             <div class="card-body">
-              <h5 class="card-title border-bottom pb-2">{{ item.title }}</h5>
-              <p class="card-text">
-                {{ item.category }}
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
+              <h5 class="card-title border-bottom pb-2 fw-bold fs-3">{{ item.title }}</h5>
+              <p class="card-text fw-bold">{{ item.category }}</p>
+              <p>{{ item.description }}</p>
+              <p>{{ item.content }}</p>
+              <p>原價:<span class="line-through">{{ item.origin_price }}</span>
+              特價:<span class="text-danger fw-bold fs-5">{{ item.price }}</span></p>
+            </div>
               <div class="d-grid gap-2 d-md-flex justify-content-md-end">
   <button class="btn btn-outline-primary me-md-2" type="button"
     @click="goToProductPage(item)">產品詳情</button>
   <button class="btn btn-primary" type="button" @click="addCart(item.id)">立即選購</button>
 </div>
-            </div>
           </div>
       </div>
     </div>
@@ -114,6 +114,9 @@
 </template>
 
 <style lang="scss">
+.line-through{
+  text-decoration:line-through;
+}
 .my-card{
   transition:0.5s;
   &:hover{

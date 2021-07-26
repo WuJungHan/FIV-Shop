@@ -98,9 +98,15 @@ const routes = [
     children: [
       {
         // 後台產品訂單頁面
-        path: '/order-products',
+        path: '/orders',
         // name: '',
-        component: () => import('../views/admin/OrderProducts.vue'),
+        component: () => import('../views/admin/Orders.vue'),
+      },
+      {
+        // 後台單一產品訂單頁面
+        path: '/order/:id',
+        // name: '',
+        component: () => import('../views/admin/Order.vue'),
       },
       // 後台商品管理頁面
       {

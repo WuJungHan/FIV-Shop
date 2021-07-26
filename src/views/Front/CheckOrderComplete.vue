@@ -25,6 +25,7 @@
   <thead class="bg-secondary">
     <tr>
       <th scope="col">品名</th>
+      <th scope="col">類別</th>
       <th scope="col">數量</th>
       <th scope="col">價格</th>
     </tr>
@@ -32,10 +33,12 @@
   <tbody>
     <tr v-for="item in cartProduct" :key="item.id">
       <td>{{ item.product.title }}</td>
+      <td>{{ item.product.category }}</td>
       <td>{{ item.qty }}/{{ item.product.unit }}</td>
       <td>＄{{ item.final_total }}</td>
     </tr>
     <tr>
+      <td></td>
       <td></td>
       <td></td>
       <td class="text-end">總計：＄{{ countPrice }}</td>
@@ -163,25 +166,27 @@ export default {
       this.data.user.address = this.$route.query.address;
     },
     finishCheckOut_goToComplete() {
-      // 客戶購物 [免驗證]-結帳頁面
-      // [API]: /api/:api_path/order [方法]: post
-      // console.log(this.data);
-      const { data } = this;
-      // console.log(data);
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
-      this.$http.post(url, { data })
-        .then((res) => {
-          if (res.data.success) {
-            // console.log(res);
-            alert(res.data.message);
-            this.goToCheckOrderer();
-          } else {
-            alert(res.data.message);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (window.confirm('已確定資料無誤，確定送出訂單嗎?') === true) {
+        // 客戶購物 [免驗證]-結帳頁面
+        // [API]: /api/:api_path/order [方法]: post
+        // console.log(this.data);
+        const { data } = this;
+        // console.log(data);
+        const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
+        this.$http.post(url, { data })
+          .then((res) => {
+            if (res.data.success) {
+              // console.log(res);
+              alert(res.data.message);
+              this.goToCheckOrderer();
+            } else {
+              alert(res.data.message);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     },
   },
   created() {
