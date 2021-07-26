@@ -76,8 +76,7 @@
     <div class="mb-3">
       <div class="d-flex justify-content-between">
         <router-link class="btn btn-primary" to="/check-orderer">回上頁</router-link>
-        <btn class="btn btn-primary" @click="finishCheckOut">123</btn>
-        <btn class="btn btn-primary" @click="goToCheckOrderer">完成訂單</btn>
+        <btn class="btn btn-primary" @click="finishCheckOut_goToComplete">完成訂單</btn>
       </div>
     </div>
 </template>
@@ -163,11 +162,26 @@ export default {
       this.data.user.tel = this.$route.query.tel;
       this.data.user.address = this.$route.query.address;
     },
-    finishCheckOut() {
+    finishCheckOut_goToComplete() {
       // 客戶購物 [免驗證]-結帳頁面
       // [API]: /api/:api_path/order [方法]: post
-      // console.log(this);
-      console.log(this.data);
+      // console.log(this.data);
+      const { data } = this;
+      // console.log(data);
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
+      this.$http.post(url, { data })
+        .then((res) => {
+          if (res.data.success) {
+            // console.log(res);
+            alert(res.data.message);
+            this.goToCheckOrderer();
+          } else {
+            alert(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   created() {
