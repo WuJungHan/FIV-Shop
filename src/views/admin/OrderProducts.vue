@@ -2,7 +2,28 @@
 <div>
   <Loading></Loading>
   </div>
-<main class="container">
+<main class="container mt-3">
+  <h2 class="fw-bold">訂單管理</h2>
+  <table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">訂單編號</th>
+      <th scope="col">訂購人姓名</th>
+      <th scope="col">訂購人備註</th>
+      <th scope="col">付款狀態</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="fw-bold">
+    <tr v-for="item in orders" :key="item.id">
+      <td>{{ item.create_at }}</td>
+      <td>{{ item.user.name }}</td>
+      <td>{{ item.message }}</td>
+      <td class="text-danger">{{ item.is_paid ?  '付款完成' : '未付款' }}</td>
+      <td><button>訂單詳情</button></td>
+    </tr>
+  </tbody>
+</table>
 </main>
 </template>
 
@@ -29,8 +50,13 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          console.log(res);
-          this.orders = res.data.orders;
+          if (res.data.success) {
+            // console.log(res);
+            this.orders = res.data.orders;
+            console.log(this.orders);
+          } else {
+            alert(res.data.message);
+          }
         })
         .catch((err) => {
           console.log(err);

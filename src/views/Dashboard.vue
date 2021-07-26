@@ -2,7 +2,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container">
-      <router-link class="navbar-brand" to="/">FIV5-logo</router-link>
+      <router-link class="navbar-brand" to="/"><span class="caveat fs-3">FIV5</span></router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -41,18 +41,24 @@
             >
           </li>
           <li>
-            <a href="#" class="nav-link" @click.prevent="signout">登出</a>
+            <button type="button" class="btn nav-link" @click="signout">登出</button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <p>後台外框-頭尾共用</p>
   <!-- 主顯示區塊後台子頁面用 配合checkLogin()決定是否顯示子router區塊-->
   <router-view v-if="checkSuccess"></router-view>
   <!-- footer -->
-  <section>表尾</section>
+  <section></section>
 </template>
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+.caveat{
+  font-family:  'Caveat', cursive;
+}
+</style>
 
 <script>
 export default {
@@ -60,9 +66,6 @@ export default {
     return {
       checkSuccess: '',
     };
-  },
-  created() {
-    this.checkLogin();
   },
   methods: {
     // 確認登入-token
@@ -72,7 +75,7 @@ export default {
         /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
         '$1',
       );
-      // 如果有token
+        // 如果有token
       if (token) {
         // axios 預設值
         this.$http.defaults.headers.common.Authorization = `${token}`;
@@ -98,6 +101,9 @@ export default {
       alert('已清除token登出');
       this.$router.push('/login');
     },
+  },
+  created() {
+    this.checkLogin();
   },
 };
 </script>
