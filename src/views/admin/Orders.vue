@@ -8,20 +8,20 @@
   <thead>
     <tr>
       <th scope="col">訂單編號</th>
-      <th scope="col">訂購人姓名</th>
-      <th scope="col">訂購人電話</th>
-      <th scope="col">應付金額</th>
+      <th scope="col" class="d-none d-md-table-cell">訂購人姓名</th>
+      <th scope="col" class="d-none d-md-table-cell">訂購人電話</th>
+      <th scope="col" class="d-none d-md-table-cell">應付金額</th>
       <th scope="col">訂單狀態</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
+      <th scope="col">查看</th>
+      <th scope="col">刪除</th>
     </tr>
   </thead>
   <tbody class="fw-bold">
     <tr v-for="item in orders" :key="item.id">
       <td>{{ item.id }}</td>
-      <td>{{ item.user.name }}</td>
-      <td>{{ item.user.tel }}</td>
-      <td>{{ item.total }}</td>
+      <td class="d-none d-md-table-cell">{{ item.user.name }}</td>
+      <td class="d-none d-md-table-cell">{{ item.user.tel }}</td>
+      <td class="d-none d-md-table-cell">{{ item.total }}</td>
       <td class="text-danger">{{ item.is_paid ?  '付款完成' : '未付款' }}</td>
       <td><button class="btn btn-primary" @click="goToOrder(item)">查看</button></td>
       <td><button class="btn btn-warning" @click="deleteOrder(item)">刪除</button></td>
