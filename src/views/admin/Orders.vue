@@ -57,7 +57,7 @@ export default {
           if (res.data.success) {
             // console.log(res);
             this.orders = res.data.orders;
-            console.log(this.orders);
+            // console.log(this.orders);
           } else {
             alert(res.data.message);
           }

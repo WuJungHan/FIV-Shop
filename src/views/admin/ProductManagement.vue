@@ -17,7 +17,7 @@
     <tbody>
       <tr class=""  v-for="item in productsAry" :key="item.id">
         <th>
-          <div class="" style="width=150px;height: 150px;background-size: cover;
+          <div class="" style="width=120px;height: 120px;background-size: cover;
             background-position: center; background-repeat:no-repeat;"
             :style="{ 'background-image' : `url(${item.imageUrl})`}"></div>
         </th>

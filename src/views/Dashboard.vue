@@ -97,7 +97,9 @@ export default {
     },
     // 登出並清除token轉回登入頁
     signout() {
-      document.cookie = 'hexToken=;expires;';
+      // 清除 token 的語法 這是將 cookie 中的 token 及到期日清空的語法。
+      // document.cookie = '（你的token名）=; expires=; path=/';
+      document.cookie = 'hexToken=;expires=; path=/;';
       alert('已清除token登出');
       this.$router.push('/login');
     },
