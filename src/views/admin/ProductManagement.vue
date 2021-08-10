@@ -27,7 +27,8 @@
         <th>{{ item.origin_price }}</th>
         <th>{{ item.price }}</th>
         <th><div class="form-check form-switch">
-  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked"
+    @click="updateIsEnable(item)" :checked="item.is_enabled">
   <label class="form-check-label" for="flexSwitchCheckChecked">
     {{ item.is_enabled ? '上架' : '未上架'}}
     </label>
@@ -60,7 +61,8 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="imageUrl">主要圖片</label>
-                <input type="text" class="form-control" placeholder="請輸入圖片連結">
+                <input type="text" class="form-control"
+                placeholder="請輸入圖片連結" v-model="tempProduct.imageUrl">
                 <img class="img-fluid" :src="tempProduct.imageUrl">
               </div>
               <div class="mb-1">多圖新增</div>
@@ -185,6 +187,7 @@
           </button>
           <!-- @click="$emit('update-product',tempProduct)" -->
           <button type="button" class="btn btn-primary"
+          @click="editProduct()"
           >
             確認
           </button>
@@ -196,7 +199,7 @@
 <!--  add productModal  -->
 <div id="addProductModal" ref="addProductModal"
     class="modal fade" tabindex="-1" aria-labelledby="productModalLabel"
-    aria-hidden="true">
+    aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-xl">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
@@ -211,7 +214,8 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="imageUrl">主要圖片</label>
-                <input type="text" class="form-control" placeholder="請輸入圖片連結">
+                <input type="text" class="form-control"
+                placeholder="請輸入圖片連結" v-model="addProductModal.data.imageUrl">
                 <img class="img-fluid" :src="addProductModal.data.imageUrl">
               </div>
               <div class="mb-1">多圖新增</div>
@@ -337,7 +341,7 @@
           </button>
           <!-- @click="$emit('update-product',tempProduct)" -->
           <button type="button" class="btn btn-primary"
-          >
+          @click="addProduct()">
             確認
           </button>
         </div>
@@ -435,7 +439,7 @@ export default {
       this.productsAry.forEach((item) => {
         if (item.id === id) {
           this.tempProduct = item;
-          console.log(this.tempProduct);
+          // console.log(this.tempProduct);
         }
       });
     },
@@ -443,16 +447,17 @@ export default {
       // 管理控制台 [需驗證]- 刪除產品
       // [API]: /api/:api_path/admin/product/:product_id [方法]: delete
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+      const data = this.tempProduct;
       if (window.confirm(`確定刪除" ${item.title} "產品嗎?`) === true) {
-        this.$http.delete(url) // 資料庫每個人path是獨立的
+        this.$http.delete(url, { data }) // 資料庫每個人path是獨立的
           .then((res) => {
             // console.log(res);
             if (res.data.success) {
-              alert('已成功刪除產品!');
+              alert('已刪除產品');
               this.getProducts();
             } else {
               // console.log(productsData);
-              alert('請重新登入!');
+              alert(res.data.success);
             }
           })
           .catch((error) => { //  接收錯誤回傳
@@ -464,7 +469,112 @@ export default {
       }
     },
     addProduct() {
-
+      // 管理控制台 [需驗證] - 商品建立
+      // title(String)、category(String)、unit(String)、origin_price(Number)、price(Number) 為必填欄位
+      // [API]: /api/:api_path/admin/product [方法]: post 帶參數{ data }
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
+      const { data } = this.addProductModal;
+      if (window.confirm('確定新增產品嗎?') === true) {
+        this.$http.post(url, { data }) // 資料庫每個人path是獨立的
+          .then((res) => {
+            // console.log(res);
+            if (res.data.success) {
+              alert('已建立產品!');
+              this.getProducts();
+              this.addProductModal.data.title = '';
+              this.addProductModal.data.category = '';
+              this.addProductModal.data.origin_price = 0;
+              this.addProductModal.data.price = 0;
+              this.addProductModal.data.unit = '';
+              this.addProductModal.data.description = '';
+              this.addProductModal.data.content = '';
+              this.addProductModal.data.is_enabled = 1;
+              this.addProductModal.data.imageUrl = '';
+              this.addProductModal.data.imagesUrl = [];
+            } else {
+              // console.log(res.data.message);
+              alert(res.data.message);
+            }
+          })
+          .catch((error) => { //  接收錯誤回傳
+            // handle error
+            console.log(error);
+          });
+      } else {
+        alert('已取消');
+      }
+    },
+    editProduct() {
+      // 管理控制台 [需驗證]-修改產品
+      /* [說明]: id(String)、title(String)、category(String)、
+      unit(String)、origin_price(Number)、price(Number) 為必填欄位 */
+      // [API]: /api/:api_path/admin/product/:id [方法]: put
+      const data = this.tempProduct;
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
+      if (window.confirm(`確定修改" ${this.tempProduct.id} "產品嗎?`) === true) {
+        this.$http.put(url, { data })
+          .then((res) => {
+            // console.log(res);
+            if (res.data.success) {
+              alert(res.data.message);
+              this.getProducts();
+            } else {
+              alert(res.data.message);
+            }
+          })
+          .catch((error) => { //  接收錯誤回傳
+            // handle error
+            console.log(error);
+          });
+      } else {
+        alert('已取消');
+      }
+    },
+    updateIsEnable(item) {
+      const data = item;
+      if (data.is_enabled !== 1) {
+        data.is_enabled = 1;
+      } else {
+        data.is_enabled = 0;
+      }
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+      console.log(data, url);
+      // 上架
+      if (data.is_enabled === 1) {
+        this.$http.put(url, { data }) // 資料庫每個人path是獨立的
+          .then((res) => {
+            // console.log(res);
+            if (res.data.success) {
+              alert('已上架產品');
+              this.getProducts();
+            } else {
+              // console.log(productsData);
+              alert(res.data.success);
+            }
+          })
+          .catch((error) => { //  接收錯誤回傳
+            // handle error
+            console.log(error);
+          });
+      }
+      // 下架
+      if (data.is_enabled === 0) {
+        this.$http.put(url, { data }) // 資料庫每個人path是獨立的
+          .then((res) => {
+            // console.log(res);
+            if (res.data.success) {
+              alert('已下架產品');
+              this.getProducts();
+            } else {
+              // console.log(productsData);
+              alert(res.data.success);
+            }
+          })
+          .catch((error) => { //  接收錯誤回傳
+            // handle error
+            console.log(error);
+          });
+      }
     },
     createImages() {
       // 新增圖片陣列

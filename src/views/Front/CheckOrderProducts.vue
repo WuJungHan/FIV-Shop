@@ -24,7 +24,7 @@
   <thead>
     <tr>
       <th scope="col" class="text-center">商品資訊</th>
-      <th scope="col">商品名稱</th>
+      <th scope="col">商品名稱 <i class="bi bi-alarm"></i></th>
       <th scope="col">數量</th>
       <th scope="col" class="d-none d-md-table-cell">單價</th>
       <th scope="col" class="d-none d-md-table-cell">折扣價</th>
@@ -40,7 +40,10 @@
             :style="{ 'background-image' : `url(${item.product.imageUrl})`}"></div>
       </td>
       <td>{{ item.product.title }}</td>
-      <td><input min="1" max="99" type="number" v-model.number="item.qty" class="form-control"></td>
+      <td>
+        <input min="1" max="99" type="number" v-model.number="item.qty"
+        class="form-control" ref="qty" @change="updataProductQty(item)">
+      </td>
       <td class="d-none d-md-table-cell">{{ item.product.origin_price }}</td>
       <td class="d-none d-md-table-cell">{{ item.product.price }}</td>
       <td>{{ item.total }}</td>
@@ -172,6 +175,40 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+    },
+    productQtyAdd() {
+
+    },
+    productQtySubtract() {
+    },
+    updataProductQty(item) {
+      // console.log(item);
+      if (item.qty > 0) {
+        const data = {
+          product_id: item.id,
+          qty: item.qty,
+        };
+        const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+        // console.log(data, url);
+        this.$http.put(url, { data })
+          .then((res) => {
+            if (res.data.success) {
+              // 如果成功 跳出提示
+              alert(res.data.message);
+              this.getCartList();
+              this.countPrice = 0;
+              this.countAllPrice();
+            } else {
+              // 如果未成功加入 跳出提示
+              alert(res.data.message);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        alert('數量不可小於零');
+      }
     },
   },
   created() {

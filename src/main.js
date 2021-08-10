@@ -11,6 +11,7 @@ import VueAxios from 'vue-axios';
 // jquery bootstrap
 import $ from 'jquery';
 import 'bootstrap';
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
 // VueYoutube
 // import VueYoutube from 'vue-youtube';
@@ -19,6 +20,16 @@ import 'bootstrap';
 import Loading from 'vue3-loading-overlay';
 // vue3-loading-overlay
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
+
+// fortawesome icon
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// 根據 icon 的種類引用
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+// import { faGooglePlus } from '@fortawesome/free-brands-svg-icons';
+
+// MenuIcon
+// import MenuIcon from 'vue-material-design-icons/Menu.vue';
 
 // vee-validate匯入主套件
 import {
@@ -34,6 +45,8 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 import App from './App.vue';
 // router
 import router from './router';
+
+// library.add(faCoffee, faGooglePlus);
 
 window.$ = $;
 
@@ -64,8 +77,16 @@ app.component('ErrorMessage', ErrorMessage);
 // vue3-loading-overlay
 app.component('Loading', Loading);
 
+// fortawesome
+// app.component('font-awesome-icon', FontAwesomeIcon);
+
+// MenuIcon
+// app.component('menu-icon', MenuIcon);
+
 // 啟用
 // app.use(VueYoutube);
+// app.use(BootstrapVue);
+// app.use(IconsPlugin);
 app.use(VueAxios, axios);
 app.use(router);
 app.mount('#app');
