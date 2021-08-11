@@ -77,6 +77,7 @@
 <script>
 // padeLoading component
 import Loading from '../../components/PageLoading.vue';
+import emitter from '../../assets/javascript/emitter';
 
 export default {
   components: {
@@ -146,6 +147,8 @@ export default {
             this.getCartList();
             this.countPrice = 0;
             this.countAllPrice();
+            // 對應front.vue的emitter監聽
+            emitter.emit('updata-cart');
           } else {
             // 如果未成功加入 跳出提示
             alert(res.data.message);
@@ -167,6 +170,8 @@ export default {
             this.getCartList();
             this.countPrice = 0;
             this.countAllPrice();
+            // 對應front.vue的emitter監聽
+            emitter.emit('updata-cart');
           } else {
             // 如果未成功加入 跳出提示
             alert(res.data.message);

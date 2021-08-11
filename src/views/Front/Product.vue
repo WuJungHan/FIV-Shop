@@ -48,6 +48,7 @@
 <script>
 // padeLoading component
 import Loading from '../../components/PageLoading.vue';
+import emitter from '../../assets/javascript/emitter';
 
 export default {
   components: {
@@ -93,6 +94,8 @@ export default {
           if (res.data.success) {
             // 如果成功 跳出提示
             alert(res.data.message);
+            // 對應front.vue的emitter監聽
+            emitter.emit('updata-cart');
           } else {
             // 如果未成功加入 跳出提示
             alert(res.data.message);

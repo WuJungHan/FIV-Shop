@@ -51,8 +51,11 @@
   1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
 </svg><span class="position-absolute top-0
               start-100 translate-middle badge
-              rounded-pill bg-secondary">
-              +99 <span class="visually-hidden">unread messages</span></span>
+              rounded-pill bg-secondary"
+              v-if="cartData.carts && cartData.carts.length!=0">
+              <!-- v-if="cartData.carts預防出錯undefind跟cartData.carts.length!=0預防顯示購物車無資料顯示0-->
+              {{ cartData.carts.length }}
+              <span class="visually-hidden">unread messages</span></span>
             </router-link>
           </li>
           <li class="nav-item">
@@ -120,6 +123,7 @@
 </style>
 
 <script>
+import emitter from '../assets/javascript/emitter';
 
 export default {
   // 區域註冊元件
@@ -127,7 +131,38 @@ export default {
   },
   data() {
     return {
+      cartData: {},
     };
+  },
+  methods: {
+    getCart() {
+      // 客戶購物 [免驗證]-取得購物車列表
+      // /api/:api_path/cart get
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      // this.$http 代替axios
+      this.$http
+        .get(url)
+        .then((res) => {
+          if (res.data.success) {
+            // console.log(res.data.data.carts);
+            this.cartData = res.data.data;
+            // console.log(this.cartData);
+            // console.log(typeof this.cartAry);
+          } else {
+            alert(res.data.message);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  mounted() {
+    this.getCart();
+    // 監聽購物車資料改變 並執行函式
+    emitter.on('updata-cart', () => {
+      this.getCart();
+    });
   },
 };
 </script>
