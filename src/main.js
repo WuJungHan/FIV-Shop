@@ -8,8 +8,9 @@ import axios from 'axios';
 // VueAxios
 import VueAxios from 'vue-axios';
 
-// jquery bootstrap
+// jquery
 import $ from 'jquery';
+// bootstrap
 import 'bootstrap';
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
@@ -48,6 +49,8 @@ import router from './router';
 
 // library.add(faCoffee, faGooglePlus);
 
+// 讓jQuery 變成全域
+// 在想使用的頁面 js 輸入 /* global $ */ 去忽略es link報錯問題
 window.$ = $;
 
 // vee-validate定義驗證規則
