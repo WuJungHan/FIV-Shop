@@ -1,7 +1,7 @@
 <template>
   <div>
-  <Loading></Loading>
-</div>
+    <Loading></Loading>
+  </div>
   <!-- 目前動作區塊 -->
   <div class="row text-center">
     <div class="col-4">
@@ -22,71 +22,71 @@
     <div>
       <h2 class="fw-bold">訂單資訊</h2>
       <table class="table">
-  <thead class="bg-secondary">
-    <tr>
-      <th scope="col">品名</th>
-      <th scope="col">類別</th>
-      <th scope="col">數量</th>
-      <th scope="col">價格</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="item in cartProduct" :key="item.id">
-      <td>{{ item.product.title }}</td>
-      <td>{{ item.product.category }}</td>
-      <td>{{ item.qty }}/{{ item.product.unit }}</td>
-      <td>＄{{ item.final_total }}</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td class="text-end">總計：＄{{ countPrice }}</td>
-    </tr>
-  </tbody>
-</table>
-      </div>
-      <!-- 訂購區塊 -->
+        <thead class="bg-secondary">
+          <tr>
+            <th scope="col">品名</th>
+            <th scope="col">類別</th>
+            <th scope="col">數量</th>
+            <th scope="col">價格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in cartProduct" :key="item.id">
+            <td>{{ item.product.title }}</td>
+            <td>{{ item.product.category }}</td>
+            <td>{{ item.qty }}/{{ item.product.unit }}</td>
+            <td>＄{{ $toCurrency(item.final_total) }}</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="text-end">總計：＄{{ $toCurrency(countPrice) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- 訂購區塊 -->
     <div>
       <h2 class="fw-bold">訂購人資料</h2>
       <table class="table">
-  <tbody class="text-start">
-    <tr class="bg-secondary row">
-      <td class="col-4 fw-bold">姓名：</td>
-      <td class="col-8">{{ data.user.name }}</td>
-    </tr>
-    <tr class="row">
-      <td class="col-4 fw-bold">電話：</td>
-      <td class="col-8">{{ data.user.tel }}</td>
-    </tr>
-    <tr class="row">
-      <td class="col-4 fw-bold">地址：</td>
-      <td class="col-8">{{ data.user.address }}</td>
-    </tr>
-    <tr class="row">
-      <td class="col-4 fw-bold">信箱：</td>
-      <td class="col-8">{{ data.user.email }}</td>
-    </tr>
-    <tr class="row">
-      <td class="col-4 fw-bold">備註：</td>
-      <td class="col-8">{{ data.message }}</td>
-    </tr>
-  </tbody>
+        <tbody class="text-start">
+          <tr class="bg-secondary row">
+            <td class="col-4 fw-bold">姓名：</td>
+            <td class="col-8">{{ data.user.name }}</td>
+          </tr>
+          <tr class="row">
+            <td class="col-4 fw-bold">電話：</td>
+            <td class="col-8">{{ data.user.tel }}</td>
+          </tr>
+          <tr class="row">
+            <td class="col-4 fw-bold">地址：</td>
+            <td class="col-8">{{ data.user.address }}</td>
+          </tr>
+          <tr class="row">
+            <td class="col-4 fw-bold">信箱：</td>
+            <td class="col-8">{{ data.user.email }}</td>
+          </tr>
+          <tr class="row">
+            <td class="col-4 fw-bold">備註：</td>
+            <td class="col-8">{{ data.message }}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </section>
   <!-- 回上頁&下一步 -->
-    <div class="mb-3">
-      <div class="d-flex justify-content-between">
-        <router-link class="btn btn-primary" to="/check-orderer">回上頁</router-link>
-        <btn class="btn btn-primary" @click="finishCheckOut_goToComplete">完成訂單</btn>
-      </div>
+  <div class="mb-3">
+    <div class="d-flex justify-content-between">
+      <router-link class="btn btn-primary" to="/check-orderer"
+        >回上頁</router-link
+      >
+      <btn class="btn btn-primary" @click="finishCheckOut_goToComplete"
+        >完成訂單</btn
+      >
     </div>
+  </div>
 </template>
-
-<style lang="scss">
-
-</style>
 
 <script>
 // padeLoading component
@@ -174,7 +174,8 @@ export default {
         const { data } = this;
         // console.log(data);
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
-        this.$http.post(url, { data })
+        this.$http
+          .post(url, { data })
           .then((res) => {
             if (res.data.success) {
               // console.log(res);

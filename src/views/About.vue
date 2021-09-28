@@ -1,3 +1,4 @@
+<!-- 元件引用範例 -->
 <template>
   <div class="about">
     <h1>This is an about page</h1>

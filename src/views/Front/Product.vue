@@ -1,49 +1,71 @@
 <template>
   <main class="container mt-3 mb-3">
     <Loading></Loading>
-  <nav class="border-bottom pb-3 mb-3">
-    <div class="">
-      <router-link class=""
-      aria-current="page" to="/index">FIV5品牌首頁</router-link>/
-      <router-link class=""
-      aria-current="page" to="/products">FIV5手造</router-link>/
-      <router-link class=""
-      aria-current="page" to="/product/:id">{{ product.category }}-{{ product.title }}</router-link>
-    </div>
+    <nav class="border-bottom pb-3 mb-3">
+      <div class="">
+        <router-link class="" aria-current="page" to="/index"
+          >FIV5品牌首頁</router-link
+        >/
+        <router-link class="" aria-current="page" to="/products"
+          >FIV5手造</router-link
+        >/
+        <router-link class="" aria-current="page" to="/product/:id"
+          >{{ product.category }}-{{ product.title }}</router-link
+        >
+      </div>
     </nav>
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="product-img">
           <!-- <img :src="product.imageUrl" alt="" style="height:550px;"> -->
-          <div class="mx-auto" style="height: 500px;max-width: 500px;
-          background-size: contain; background-position: center; background-repeat:no-repeat;"
-            :style="{ 'background-image' : `url(${product.imageUrl})`}"></div>
+          <div
+            class="mx-auto"
+            style="
+              height: 500px;
+              max-width: 500px;
+              background-size: contain;
+              background-position: center;
+              background-repeat: no-repeat;
+            "
+            :style="{ 'background-image': `url(${product.imageUrl})` }"
+          ></div>
         </div>
       </div>
       <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
         <div>
-        <h2>{{ product.title }}</h2>
-        <p>{{ product.category }}</p>
-        <h3>{{ product.description }}</h3>
-        <p>{{ product.content }}</p>
-        <p>原價:<span class="line-through">{{ product.origin_price }}</span>
-              特價:<span class="text-danger fw-bold fs-5">{{ product.price }}</span></p>
-        <p>數量:
-          <input min="1" max="99" type="number" class="" v-model.number="qty">
-        </p>
-        <button class="btn btn-success me-3" @click="addCart()">加入購物車</button>
-        <router-link class="btn btn-primary" to="/products">回上頁</router-link>
+          <h2>{{ product.title }}</h2>
+          <p>{{ product.category }}</p>
+          <h3>{{ product.description }}</h3>
+          <p>{{ product.content }}</p>
+          <p v-if="product.price">
+            原價:<span class="line-through">{{
+              $toCurrency(product.origin_price)
+            }}</span>
+            特價:<span class="text-danger fw-bold fs-5">{{
+              $toCurrency(product.price)
+            }}</span>
+          </p>
+          <p>
+            數量:
+            <input
+              min="1"
+              max="99"
+              type="number"
+              class=""
+              v-model.number="qty"
+            />
+          </p>
+          <button class="btn btn-success me-3" @click="addCart()">
+            加入購物車
+          </button>
+          <router-link class="btn btn-primary" to="/products"
+            >回上頁</router-link
+          >
         </div>
       </div>
     </div>
   </main>
 </template>
-
-<style lang="scss">
-.line-through{
-  text-decoration:line-through;
-}
-</style>
 
 <script>
 // padeLoading component
@@ -89,7 +111,8 @@ export default {
         qty: Number(this.qty),
       };
       // console.log(url, { data: cart });
-      this.$http.post(url, { data: cart })
+      this.$http
+        .post(url, { data: cart })
         .then((res) => {
           if (res.data.success) {
             // 如果成功 跳出提示
@@ -117,3 +140,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.line-through {
+  text-decoration: line-through;
+}
+</style>

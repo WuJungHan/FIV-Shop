@@ -2,7 +2,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container">
-      <router-link class="navbar-brand" to="/"><span class="caveat fs-3">FIV5</span></router-link>
+      <router-link class="navbar-brand" to="/"
+        ><span class="caveat fs-3">FIV5</span></router-link
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -17,10 +19,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav">
           <li>
-            <router-link
-              class="nav-link"
-              aria-current="page"
-              to="/orders"
+            <router-link class="nav-link" aria-current="page" to="/orders"
               >後台訂單</router-link
             >
           </li>
@@ -41,7 +40,9 @@
             >
           </li> -->
           <li>
-            <button type="button" class="btn nav-link" @click="signout">登出</button>
+            <button type="button" class="btn nav-link" @click="signout">
+              登出
+            </button>
           </li>
         </ul>
       </div>
@@ -52,13 +53,6 @@
   <!-- footer -->
   <section></section>
 </template>
-
-<style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
-.caveat{
-  font-family:  'Caveat', cursive;
-}
-</style>
 
 <script>
 export default {
@@ -75,7 +69,7 @@ export default {
         /(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/,
         '$1',
       );
-        // 如果有token
+      // 如果有token
       if (token) {
         // axios 預設值
         this.$http.defaults.headers.common.Authorization = `${token}`;
@@ -109,3 +103,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+.caveat {
+  font-family: 'Caveat', cursive;
+}
+</style>

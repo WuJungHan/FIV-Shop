@@ -2,40 +2,58 @@
   <main>
     <div class="container d-flex justify-content-center mt-3">
       <!-- index 橫幅 -->
-      <swiper :autoplay="autoplay" :navigation="true" class="mySwiper
-        border border-3 animate__animated animate__fadeIn">
+      <swiper
+        :autoplay="autoplay"
+        :navigation="true"
+        class="mySwiper border border-3 animate__animated animate__fadeIn"
+      >
         <!-- slide 1 -->
         <swiper-slide
           style="
-            background: url('https://images.unsplash.com/photo-1498075702571-ecb018f3752d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1057&q=80') center / cover;
+            background: url('https://images.unsplash.com/photo-1498075702571-ecb018f3752d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1057&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             height: 400px;
           "
         ></swiper-slide>
         <!-- slide 2 -->
         <swiper-slide
           style="
-            background: url('https://images.unsplash.com/photo-1566325645218-73b67fd824a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80') center / cover;
+            background: url('https://images.unsplash.com/photo-1566325645218-73b67fd824a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             height: 400px;
           "
         ></swiper-slide>
         <!-- slide 3 -->
         <swiper-slide
           style="
-            background: url('https://images.unsplash.com/photo-1578651559882-286b3b791a3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80') center / cover;
+            background: url('https://images.unsplash.com/photo-1578651559882-286b3b791a3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             height: 400px;
           "
         ></swiper-slide>
         <!-- slide 4 -->
         <swiper-slide
           style="
-            background: url('https://images.unsplash.com/photo-1586878340506-af074f2ee999?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80') center / cover;
+            background: url('https://images.unsplash.com/photo-1586878340506-af074f2ee999?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             height: 400px;
           "
         ></swiper-slide>
         <!-- slide 5 -->
         <swiper-slide
           style="
-            background: url('https://images.unsplash.com/photo-1585506172580-9564a524231f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80') center / cover;
+            background: url('https://images.unsplash.com/photo-1585506172580-9564a524231f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
             height: 400px;
           "
         ></swiper-slide>
@@ -68,6 +86,7 @@
           class="
             col-6 col-md-3
             product-icon
+            mt-3 mt-md-0
             animate__animated animate__fadeInDown animate__delay-1s
           "
         >
@@ -81,13 +100,13 @@
               p-3
               my-btn
               main-product-btn
-              second-product-btn
+              fourth-product-btn
               fs-3
               fw-bold
             "
             @click="goToProducts"
           >
-            FIV5-對戒
+            FIV5-項鍊
           </button>
         </li>
         <li
@@ -114,14 +133,14 @@
             "
             @click="goToProducts"
           >
-            FIV5-手鐲
+            FIV5-手環
           </button>
         </li>
+
         <li
           class="
             col-6 col-md-3
             product-icon
-            mt-3 mt-md-0
             animate__animated animate__fadeInDown animate__delay-3s
           "
         >
@@ -135,13 +154,13 @@
               p-3
               my-btn
               main-product-btn
-              fourth-product-btn
+              second-product-btn
               fs-3
               fw-bold
             "
             @click="goToProducts"
           >
-            FIV5-項鍊
+            FIV5-特製
           </button>
         </li>
       </ul>
@@ -149,15 +168,50 @@
     <!-- index FIV5 品牌區塊 -->
     <section class="container mt-3">
       <h2 class="border-bottom pb-2 fw-bold">關於品牌</h2>
-      <div class="d-flex justify-content-center animate__animated animate__fadeIn">
-      <div class="mt-3 p-3 brand-bg d-flex d-flex justify-content-center align-items-center rounded-1 border border-3" style="background:linear-gradient(to right, rgba(3, 3, 3, 0.6), rgba(2, 2, 2, 0.6)), url('https://upload.cc/i1/2021/06/06/pZsXyV.jpg') center /auto; height: 550px; width: 1100px;">
-      <div class="brand-text p-3 p-md-5 fw-bold rounded-1" style="background:#fff;
-      height: 300px; max-width: 500px;opacity:0.7;">
-      <h3 class="fw-bold"><span class="caveat fs-1">FIV5</span>-造就不凡 !</h3>
-      <p class="fs-4">關於<span class="caveat">FIV5</span>
-      的誕生，可以說是一場人生的賭博，沒有一技之長的人們，想追求「神乎其技工藝，鍛造傳奇」的故事。</p>
-      </div>
-      </div>
+      <div
+        class="d-flex justify-content-center animate__animated animate__fadeIn"
+      >
+        <div
+          class="
+            mt-3
+            p-3
+            brand-bg
+            d-flex d-flex
+            justify-content-center
+            align-items-center
+            rounded-1
+            border border-3
+          "
+          style="
+            background-color: rgba(0, 0, 0, 0.6);
+            background-blend-mode: multiply;
+            background-image: url('https://upload.cc/i1/2021/06/06/pZsXyV.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 550px;
+            width: 1100px;
+          "
+        >
+          <div
+            class="brand-text p-3 p-md-5 fw-bold rounded-1"
+            style="
+              background: #fff;
+              height: 300px;
+              max-width: 500px;
+              opacity: 0.7;
+            "
+          >
+            <h3 class="fw-bold">
+              <span class="caveat fs-1">FIV5</span>-只是愛飾品
+            </h3>
+            <p class="fs-4">
+              本來只是喜歡買飾品來療癒自己工作疲憊的心情，某天，
+              自己開始手作自己想要的飾品，
+              突然也想將自己的手作飾品分享給也喜歡飾品的你。
+            </p>
+          </div>
+        </div>
       </div>
     </section>
     <!-- index FIV5 最新消息 -->
@@ -167,34 +221,84 @@
       <div class="mt-3 row">
         <div class="col-0 col-md-1"></div>
         <div class="col-12 col-md-5">
-          <div class="first-product-bg product-bg rounded-1 animate__animated animate__fadeIn
-            " style="">
-            <div class="hover text-white d-flex justify-content-center align-items-center">
-              <h4 class="product-bg-text caveat">FIV5 –「珍愛」</h4>
-              </div>
+          <div
+            class="
+              first-product-bg
+              product-bg
+              rounded-1
+              animate__animated animate__fadeIn
+            "
+            style=""
+          >
+            <div
+              class="
+                hover
+                text-white
+                d-flex
+                justify-content-center
+                align-items-center
+              "
+            >
+              <h4 class="product-bg-text caveat">FIV5 –「懷舊系列」</h4>
+            </div>
           </div>
         </div>
-        <div class="col-12 col-md-5 d-flex flex-column justify-content-center text-center">
-          <h3 class="fw-bold">珍藏於你我於心</h3>
-          <p class="fs-5">將此唯一永垂不朽的「珍愛」，帶回珍藏。</p>
-          <router-link class="btn btn-primary w-50 mx-auto" to="/products">產品詳情</router-link>
+        <div
+          class="
+            col-12 col-md-5
+            d-flex
+            flex-column
+            justify-content-center
+            text-center
+          "
+        >
+          <h3 class="fw-bold">懷舊系列</h3>
+          <p class="fs-5">舊舊染黑復古帥氣 。</p>
+          <router-link class="btn btn-primary w-50 mx-auto" to="/products"
+            >產品詳情</router-link
+          >
         </div>
         <div class="col-0 col-md-1"></div>
       </div>
       <!-- news second-product-bg -->
       <div class="mt-3 row">
         <div class="col-0 col-md-1"></div>
-        <div class="col-12 col-md-5 d-flex flex-column justify-content-center text-center">
-          <h3 class="fw-bold">無須語言的對話</h3>
-          <p class="fs-5">訴說著「生世」，傾聽著身世。</p>
-          <router-link class="btn btn-primary w-50 mx-auto" to="/products">產品詳情</router-link>
+        <div
+          class="
+            col-12 col-md-5
+            d-flex
+            flex-column
+            justify-content-center
+            text-center
+          "
+        >
+          <h3 class="fw-bold">麻花捲捲系列</h3>
+          <p class="fs-5">各式胖瘦繞線，就想起好吃的麻花捲 。</p>
+          <router-link class="btn btn-primary w-50 mx-auto" to="/products"
+            >產品詳情</router-link
+          >
         </div>
         <div class="col-12 col-md-5">
-          <div class="second-product-bg product-bg rounded-1 animate__animated animate__fadeIn
-            " style="">
-            <div class="hover text-white d-flex justify-content-center align-items-center">
-              <h4 class="product-bg-text caveat">FIV5 –「生世」</h4>
-              </div>
+          <div
+            class="
+              second-product-bg
+              product-bg
+              rounded-1
+              animate__animated animate__fadeIn
+            "
+            style=""
+          >
+            <div
+              class="
+                hover
+                text-white
+                d-flex
+                justify-content-center
+                align-items-center
+              "
+            >
+              <h4 class="product-bg-text caveat">FIV5 –「麻花捲捲系列」</h4>
+            </div>
           </div>
         </div>
         <div class="col-0 col-md-1"></div>
@@ -203,35 +307,64 @@
       <div class="mt-3 row">
         <div class="col-0 col-md-1"></div>
         <div class="col-12 col-md-5">
-          <div class="third-product-bg product-bg rounded-1 animate__animated animate__fadeIn
-            " style="">
-            <div class="hover text-white d-flex justify-content-center align-items-center">
-              <h4 class="product-bg-text caveat">FIV5 –「同眶」</h4>
-              </div>
+          <div
+            class="
+              third-product-bg
+              product-bg
+              rounded-1
+              animate__animated animate__fadeIn
+            "
+            style=""
+          >
+            <div
+              class="
+                hover
+                text-white
+                d-flex
+                justify-content-center
+                align-items-center
+              "
+            >
+              <h4 class="product-bg-text caveat">FIV5 –「敲敲系列」</h4>
+            </div>
           </div>
         </div>
-        <div class="col-12 col-md-5 d-flex flex-column justify-content-center text-center">
-          <h3 class="fw-bold">肉眼可見清清楚楚</h3>
-          <p class="fs-5">當靈魂之窗重疊時，「同眶」即在眼前。</p>
-          <router-link class="btn btn-primary w-50 mx-auto" to="/products">產品詳情</router-link>
+        <div
+          class="
+            col-12 col-md-5
+            d-flex
+            flex-column
+            justify-content-center
+            text-center
+          "
+        >
+          <h3 class="fw-bold">敲敲系列</h3>
+          <p class="fs-5">需要練臂力的款式，但各自有線條美 。</p>
+          <router-link class="btn btn-primary w-50 mx-auto" to="/products"
+            >產品詳情</router-link
+          >
         </div>
         <div class="col-0 col-md-1"></div>
       </div>
     </section>
     <!-- 飾品工藝 影片+介紹區塊 -->
     <section class="container mt-3">
-      <h2 class="border-bottom pb-2 fw-bold">飾品工藝</h2>
+      <h2 class="border-bottom pb-2 fw-bold">金工工事</h2>
       <div class="row mt-3">
         <div class="col-12 col-md-6">
           <!-- 崁入 youtube autoplay=1 自動撥放 如不要請移除-->
-          <iframe width="100%" height="350"
-          src="https://www.youtube.com/embed/HjBXUahbo80?&autoplay=1" frameborder="0"
-          allowfullscreen></iframe>
+          <iframe
+            width="100%"
+            height="350"
+            src="https://www.youtube.com/embed/HjBXUahbo80?&autoplay=1"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
         </div>
-        <div class="col-12 col-md-6  d-flex flex-column justify-content-center">
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
           <div class="">
-          <h3 class="fw-bold">每鍛傳奇，造就不斐</h3>
-          <p>千錘百鍊，匠魂鍛造，方能永垂不朽！</p>
+            <h3 class="fw-bold">每鍛傳奇，造就不斐</h3>
+            <p>千錘百鍊，匠魂鍛造，方能永垂不朽！</p>
           </div>
         </div>
       </div>
@@ -271,13 +404,64 @@
   </main>
 </template>
 
+<script>
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue';
+// import Swiper core and required modules
+import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
+// install Swiper modules
+SwiperCore.use([Navigation, Autoplay]);
+
+export default {
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  data() {
+    return {
+      email: '',
+      // swiper 自動撥放
+      autoplay: {
+        // 使用者操作swiper之後，是否禁止autoplay
+        disableOnInteraction: false,
+        // 自動切換的時間間隔（單位ms）
+        delay: 4000,
+      },
+      loop: true,
+      // youtube
+      // videoId: 'lG0Ys-2d4MA',
+      // playerVars: {
+      //   autoplay: 1,
+      // },
+    };
+  },
+  methods: {
+    // playVideo() {
+    //   this.player.playVideo();
+    // },
+    // playing() {
+    //   console.log(' we are watching!!!');
+    // },
+    goToProducts() {
+      this.$router.push('/products');
+    },
+  },
+  computed: {
+    // player() {
+    //   return this.$refs.youtube.player;
+    // },
+  },
+  created() {},
+};
+</script>
+
 <style lang="scss">
 // Import Swiper styles
 @import 'swiper/swiper.scss';
 @import '~swiper/components/navigation/navigation.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
-.caveat{
-  font-family:  'Caveat', cursive;
+.caveat {
+  font-family: 'Caveat', cursive;
 }
 .swiper-container {
   width: 100%;
@@ -371,32 +555,33 @@
       110%;
   }
 }
-.news{
+.news {
   transition: 1s;
-  .first-product-bg{
-    background:url('https://upload.cc/i1/2021/06/06/tXB4zw.jpg') center /100%;
+  .first-product-bg {
+    background: url('https://upload.cc/i1/2021/06/06/tXB4zw.jpg') center / 100%;
   }
-  .second-product-bg{
-    background:url('https://upload.cc/i1/2021/06/06/WyrF51.jpg') center /100%;
+  .second-product-bg {
+    background: url('https://upload.cc/i1/2021/06/06/rWBvSd.jpg') center / 100%;
   }
-  .third-product-bg{
-    background:url('https://upload.cc/i1/2021/07/15/byfrL1.jpg') center /100%;
+  .third-product-bg {
+    background: url('https://upload.cc/i1/2021/06/06/4o0tSQ.jpg') center / 100%;
+    background-position: 0px 50px;
   }
-  .product-bg{
+  .product-bg {
     height: 300px;
   }
-  .product-bg-text{
+  .product-bg-text {
     display: none;
   }
-  .hover{
+  .hover {
     height: 100%;
     width: 100%;
     // background: rgba(0,0,0,0.5);
-    transition:0.5s;
-    &:hover{
-      background: rgba(0,0,0,0.5);
+    transition: 0.5s;
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
     }
-    &:hover .product-bg-text{
+    &:hover .product-bg-text {
       display: inline;
     }
   }
@@ -412,55 +597,3 @@
 // }
 // .product-icon{}
 </style>
-
-<script>
-// Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue';
-// import Swiper core and required modules
-import SwiperCore, { Navigation, Autoplay } from 'swiper/core';
-// install Swiper modules
-SwiperCore.use([Navigation, Autoplay]);
-
-export default {
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
-  data() {
-    return {
-      email: '',
-      // swiper 自動撥放
-      autoplay: {
-      // 使用者操作swiper之後，是否禁止autoplay
-        disableOnInteraction: false,
-        // 自動切換的時間間隔（單位ms）
-        delay: 4000,
-      },
-      loop: true,
-      // youtube
-      // videoId: 'lG0Ys-2d4MA',
-      // playerVars: {
-      //   autoplay: 1,
-      // },
-    };
-  },
-  methods: {
-    // playVideo() {
-    //   this.player.playVideo();
-    // },
-    // playing() {
-    //   console.log(' we are watching!!!');
-    // },
-    goToProducts() {
-      this.$router.push('/products');
-    },
-  },
-  computed: {
-    // player() {
-    //   return this.$refs.youtube.player;
-    // },
-  },
-  created() {
-  },
-};
-</script>

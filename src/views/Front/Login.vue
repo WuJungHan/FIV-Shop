@@ -63,10 +63,6 @@
   </main>
 </template>
 
-<!-- css區塊使用scss格式 -->
-<style lang="scss">
-</style>
-
 <!-- js區塊 -->
 <script>
 export default {

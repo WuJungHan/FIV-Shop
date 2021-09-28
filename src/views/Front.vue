@@ -131,40 +131,6 @@
   </main>
 </template>
 
-<style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
-.caveat {
-  font-family: 'Caveat', cursive;
-}
-.my-navbar-bg {
-  background: linear-gradient(to right, #ffd89b, #19547b);
-  z-index: 999;
-}
-.front-bg {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(to right, rgba(3, 3, 3, 0.8), rgba(2, 2, 2, 0.8)),
-    url(https://images.unsplash.com/photo-1506806732259-39c2d0268443?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80)
-      no-repeat center/100% 100%;
-}
-.front-text-bg {
-  height: 100px;
-  background: rgba(255, 252, 252, 0.3);
-}
-.brand-btn {
-  background: #ffd89b;
-  &:hover {
-    background: #c7a979;
-  }
-}
-.product-btn {
-  background: #19547b;
-  &:hover {
-    background: #123d5a;
-  }
-}
-</style>
-
 <script>
 import emitter from '../assets/javascript/emitter';
 
@@ -208,3 +174,37 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+.caveat {
+  font-family: 'Caveat', cursive;
+}
+.my-navbar-bg {
+  background: linear-gradient(to right, #ffd89b, #19547b);
+  z-index: 999;
+}
+.front-bg {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to right, rgba(3, 3, 3, 0.8), rgba(2, 2, 2, 0.8)),
+    url(https://images.unsplash.com/photo-1506806732259-39c2d0268443?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80)
+      no-repeat center/100% 100%;
+}
+.front-text-bg {
+  height: 100px;
+  background: rgba(255, 252, 252, 0.3);
+}
+.brand-btn {
+  background: #ffd89b;
+  &:hover {
+    background: #c7a979;
+  }
+}
+.product-btn {
+  background: #19547b;
+  &:hover {
+    background: #123d5a;
+  }
+}
+</style>

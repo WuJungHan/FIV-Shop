@@ -29,7 +29,13 @@
             <li>
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
+                class="
+                  list-group-item list-group-item-action
+                  pt-3
+                  pb-3
+                  fs-5
+                  fw-bold
+                "
                 aria-current="true"
                 @click="getProducts()"
               >
@@ -39,7 +45,13 @@
             <li class="">
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
+                class="
+                  list-group-item list-group-item-action
+                  pt-3
+                  pb-3
+                  fs-5
+                  fw-bold
+                "
                 aria-current="true"
                 @click="getRingProducts()"
               >
@@ -49,31 +61,49 @@
             <li class="">
               <button
                 type="button"
-                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
-                aria-current="true"
-                @click="getLoversRingProducts()"
-              >
-                手造對戒
-              </button>
-            </li>
-            <li class="">
-              <button
-                type="button"
-                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
-                aria-current="true"
-                @click="getBraceletProducts()"
-              >
-                手造手鐲
-              </button>
-            </li>
-            <li class="">
-              <button
-                type="button"
-                class="list-group-item list-group-item-action pt-3 pb-3 fs-5 fw-bold"
+                class="
+                  list-group-item list-group-item-action
+                  pt-3
+                  pb-3
+                  fs-5
+                  fw-bold
+                "
                 aria-current="true"
                 @click="getNecklaceProducts()"
               >
                 手造項鍊
+              </button>
+            </li>
+            <li class="">
+              <button
+                type="button"
+                class="
+                  list-group-item list-group-item-action
+                  pt-3
+                  pb-3
+                  fs-5
+                  fw-bold
+                "
+                aria-current="true"
+                @click="getBraceletProducts()"
+              >
+                手造手環
+              </button>
+            </li>
+            <li class="">
+              <button
+                type="button"
+                class="
+                  list-group-item list-group-item-action
+                  pt-3
+                  pb-3
+                  fs-5
+                  fw-bold
+                "
+                aria-current="true"
+                @click="getLoversRingProducts()"
+              >
+                手造特製
               </button>
             </li>
           </ul>
@@ -81,64 +111,63 @@
       </div>
       <!-- 主商品card區塊 -->
       <div class="col-12 col-md-10 d-flex flex-wrap">
-          <div
-            v-for="item in products"
-            :key="item.id"
-            class="card mb-3 me-5  my-card animate__animated animate__fadeIn"
-            style="width: 18rem"
-          >
+        <div
+          v-for="item in products"
+          :key="item.id"
+          class="card mb-3 me-5 my-card animate__animated animate__fadeIn"
+          style="width: 18rem"
+        >
           <!-- card background-image -->
           <div class="my-card-img-div">
             <!-- <img :src="item.imageUrl" class="card-img-top  my-card-img" alt="..." /> -->
-            <div class="card-img-top my-card-img"
-            style="height: 220px; background-size: cover; background-position: center"
-            :style="{ 'background-image' : `url(${item.imageUrl})`}"></div>
+            <div
+              class="card-img-top my-card-img"
+              style="
+                height: 220px;
+                background-size: cover;
+                background-position: center;
+              "
+              :style="{ 'background-image': `url(${item.imageUrl})` }"
+            ></div>
           </div>
-            <div class="card-body">
-              <h5 class="card-title border-bottom pb-2 fw-bold fs-3">{{ item.title }}</h5>
-              <p class="card-text fw-bold">{{ item.category }}</p>
-              <p>{{ item.description }}</p>
-              <p>{{ item.content }}</p>
-              <p>原價:<span class="line-through">{{ item.origin_price }}</span>
-              特價:<span class="text-danger fw-bold fs-5">{{ item.price }}</span></p>
-            </div>
-              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  <button class="btn btn-outline-primary me-md-2" type="button"
-    @click="goToProductPage(item)">產品詳情</button>
-  <button class="btn btn-primary" type="button" @click="addCart(item.id)">立即選購</button>
-</div>
+          <div class="card-body">
+            <h5 class="card-title border-bottom pb-2 fw-bold fs-3">
+              {{ item.title }}
+            </h5>
+            <p class="card-text fw-bold">{{ item.category }}</p>
+            <p>{{ item.description }}</p>
+            <p>{{ item.content }}</p>
+            <p>
+              原價:<span class="line-through">{{
+                $toCurrency(item.origin_price)
+              }}</span>
+              特價:<span class="text-danger fw-bold fs-5">{{
+                $toCurrency(item.price)
+              }}</span>
+            </p>
           </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button
+              class="btn btn-outline-primary me-md-2"
+              type="button"
+              @click="goToProductPage(item)"
+            >
+              產品詳情
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              @click="addCart(item.id)"
+            >
+              立即選購
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="d-flex justify-content-center"></div>
   </main>
 </template>
-
-<style lang="scss">
-.line-through{
-  text-decoration:line-through;
-}
-.my-card{
-  transition:0.5s;
-  &:hover{
-    box-shadow: 0px 0px 10px #464e46;
-  }
-}
-.my-card-width{
-  width: 33%;
-}
-.my-card-img-div{
-  overflow: hidden;
-}
-.my-card-img{
-  width: 100%;
-  height: 250px;
-  transform:scale(1,1);
-  transition:0.5s;
-  &:hover{
-    transform:scale(1.2,1.2);
-  }
-}
-</style>
 
 <script>
 // ../../上上層
@@ -157,6 +186,7 @@ export default {
     return {
       products: [],
       categoryProducts: [],
+      pagination: {},
     };
   },
   methods: {
@@ -183,7 +213,7 @@ export default {
     getLoversRingProducts() {
       const arr = [];
       this.categoryProducts.forEach((item) => {
-        if (item.category === '對戒') {
+        if (item.category === '特製') {
           arr.push(item);
         }
       });
@@ -194,7 +224,7 @@ export default {
     getBraceletProducts() {
       const arr = [];
       this.categoryProducts.forEach((item) => {
-        if (item.category === '手鐲') {
+        if (item.category === '手環') {
           arr.push(item);
         }
       });
@@ -223,7 +253,8 @@ export default {
         qty: _qty,
       };
       // console.log(url, { data: cart });
-      this.$http.post(url, { data: cart })
+      this.$http
+        .post(url, { data: cart })
         .then((res) => {
           if (res.data.success) {
             // 如果成功 跳出提示
@@ -251,6 +282,7 @@ export default {
         // console.log(res);
         this.products = res.data.products;
         this.categoryProducts = res.data.products;
+        this.pagination = res.data.pagination;
         // console.log(this.products);
       })
       .catch((err) => {
@@ -259,3 +291,30 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.line-through {
+  text-decoration: line-through;
+}
+.my-card {
+  transition: 0.5s;
+  &:hover {
+    box-shadow: 0px 0px 10px #464e46;
+  }
+}
+.my-card-width {
+  width: 33%;
+}
+.my-card-img-div {
+  overflow: hidden;
+}
+.my-card-img {
+  width: 100%;
+  height: 250px;
+  transform: scale(1, 1);
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.2, 1.2);
+  }
+}
+</style>

@@ -8,8 +8,9 @@ import axios from 'axios';
 // VueAxios
 import VueAxios from 'vue-axios';
 
-// jquery
-import $ from 'jquery';
+// jquery (由於目前bs5不需要jQuery 故有必要再使用)
+// import $ from 'jquery';
+
 // bootstrap
 import 'bootstrap';
 // import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
@@ -43,6 +44,9 @@ import { localize, setLocale } from '@vee-validate/i18n';
 // vee-validate匯入繁體中文語系檔案
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 
+// js檔 千分號函式 全域使用
+import toCurrency from './assets/javascript/toCurrency';
+
 import App from './App.vue';
 // router
 import router from './router';
@@ -51,7 +55,7 @@ import router from './router';
 
 // 讓jQuery 變成全域
 // 在想使用的頁面 js 輸入 /* global $ */ 去忽略es link報錯問題
-window.$ = $;
+// window.$ = $;
 
 // vee-validate定義驗證規則
 // 將全部規則rules 載出來
@@ -79,6 +83,9 @@ app.component('ErrorMessage', ErrorMessage);
 
 // vue3-loading-overlay
 app.component('Loading', Loading);
+
+// 千分號 全域設定 toCurrency
+app.config.globalProperties.$toCurrency = toCurrency;
 
 // fortawesome
 // app.component('font-awesome-icon', FontAwesomeIcon);
