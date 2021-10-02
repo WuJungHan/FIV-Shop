@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading></Loading>
+    <Loading/>
   </div>
   <div class="container mt-3" v-if="checkSuccess">
     <!-- 訂單詳情 -->
@@ -77,12 +77,11 @@
       <tbody>
         <tr v-for="item in order.products" :key="item.id">
           <td>
-            <div
-              class=""
+            <divs
               style="width=120px;height: 120px;background-size: cover;
             background-position: center; background-repeat:no-repeat;"
               :style="{ 'background-image': `url(${item.product.imageUrl})` }"
-            ></div>
+            ></divs>
           </td>
           <td>{{ item.product.title }}</td>
           <td>{{ item.product.category }}</td>
@@ -124,37 +123,37 @@ export default {
         .get(url)
         .then((res) => {
           if (res.data.success) {
-            // console.log(res);
-            // console.log(res.data.orders);
             const ordersAry = res.data.orders;
             this.checkSuccess = true;
             ordersAry.forEach((item) => {
               if (item.id === this.id) {
                 this.order = item;
-                // console.log(this.order);
               }
             });
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     upDataOrder() {
       // 管理控制台 [需驗證]-修改訂單
       // [API]: /api/:api_path/admin/order/:id [方法]: put
       // const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders/${id}`;
-      // console.log(url);
     },
   },
   created() {
     // 取得網址上的參數 params.id
-    // console.log(this.$route);
     // airbnb 解構寫法 寫成物件id
     const { id } = this.$route.params;
-    // console.log(id);
     this.id = id;
     this.getOrdersList();
   },

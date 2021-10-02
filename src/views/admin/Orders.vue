@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading></Loading>
+    <Loading/>
   </div>
   <main class="container mt-3">
     <h2 class="fw-bold">訂單管理</h2>
@@ -26,12 +26,12 @@
             {{ item.is_paid ? '付款完成' : '未付款' }}
           </td>
           <td>
-            <button class="btn btn-primary" @click="goToOrder(item)">
+            <button type="button" class="btn btn-primary" @click="goToOrder(item)">
               查看
             </button>
           </td>
           <td>
-            <button class="btn btn-warning" @click="deleteOrder(item)">
+            <button type="button" class="btn btn-warning" @click="deleteOrder(item)">
               刪除
             </button>
           </td>
@@ -58,22 +58,25 @@ export default {
   },
   methods: {
     getOrdersList() {
-      // 管理控制台 [需驗證]-取得訂單列表
-      // /api/:api_path/admin/orders?page=:page
+      // 管理控制台 [需驗證]-取得訂單列表 /api/:api_path/admin/orders?page=:page
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders`;
       this.$http
         .get(url)
         .then((res) => {
           if (res.data.success) {
-            // console.log(res);
             this.orders = res.data.orders;
-            // console.log(this.orders);
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     goToOrder(item) {
@@ -81,25 +84,34 @@ export default {
     },
     deleteOrder(item) {
       if (window.confirm(`確定刪除${item.create_at}訂單嗎?`) === true) {
-        // 管理控制台 [需驗證] - 刪除訂單
-        // /api/:api_path/admin/order/:id [方法]: delete
+        // 管理控制台 [需驗證] - 刪除訂單 /api/:api_path/admin/order/:id [方法]: delete
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${item.id}`;
         this.$http
           .delete(url)
           .then((res) => {
             if (res.data.success) {
-              // console.log(res);
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+              });
               this.getOrdersList();
             } else {
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+                icon: 'error',
+              });
             }
           })
           .catch((err) => {
-            console.log(err);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       } else {
-        alert('已取消');
+        this.$swal({
+          title: '已取消',
+          icon: 'error',
+        });
       }
     },
   },

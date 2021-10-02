@@ -1,12 +1,12 @@
 <template>
   <main class="container mt-3">
-    <Loading></Loading>
+    <Loading />
     <nav class="d-flex justify-content-between border-bottom">
-      <div class="">
-        <router-link class="" aria-current="page" to="/index"
+      <div>
+        <router-link aria-current="page" to="/index"
           >FIV5品牌首頁</router-link
         >/
-        <router-link class="" aria-current="page" to="/products"
+        <router-link aria-current="page" to="/products"
           >FIV5手造</router-link
         >
       </div>
@@ -17,7 +17,7 @@
           placeholder="請輸入產品名稱"
           aria-label="Search"
         />
-        <button class="btn btn-outline-primary" type="">尋找手造</button>
+        <button type="button" class="btn btn-outline-primary">尋找手造</button>
       </div>
     </nav>
 
@@ -42,7 +42,7 @@
                 全部商品
               </button>
             </li>
-            <li class="">
+            <li>
               <button
                 type="button"
                 class="
@@ -58,7 +58,7 @@
                 手造戒指
               </button>
             </li>
-            <li class="">
+            <li>
               <button
                 type="button"
                 class="
@@ -74,7 +74,7 @@
                 手造項鍊
               </button>
             </li>
-            <li class="">
+            <li>
               <button
                 type="button"
                 class="
@@ -90,7 +90,7 @@
                 手造手環
               </button>
             </li>
-            <li class="">
+            <li>
               <button
                 type="button"
                 class="
@@ -119,16 +119,17 @@
         >
           <!-- card background-image -->
           <div class="my-card-img-div">
-            <!-- <img :src="item.imageUrl" class="card-img-top  my-card-img" alt="..." /> -->
-            <div
+            <img
               class="card-img-top my-card-img"
               style="
                 height: 220px;
                 background-size: cover;
                 background-position: center;
               "
-              :style="{ 'background-image': `url(${item.imageUrl})` }"
-            ></div>
+              :src="item.imageUrl"
+              :alt="item.title"
+            >
+            <!--動態背景圖寫法 :style="{ 'background-image': `url(${item.imageUrl})` }" -->
           </div>
           <div class="card-body">
             <h5 class="card-title border-bottom pb-2 fw-bold fs-3">
@@ -170,14 +171,13 @@
 </template>
 
 <script>
-// ../../上上層
 // import Card from '../../components/Card.vue';
 // padeLoading component
-import Loading from '../../components/PageLoading.vue';
+import Loading from '@/components/PageLoading.vue';
 import emitter from '../../assets/javascript/emitter';
 
 export default {
-  // 區域註冊元件
+  // 註冊區域元件
   components: {
     // Card,
     Loading,
@@ -195,8 +195,6 @@ export default {
     },
     goToProductPage(item) {
       // 使用this.$router 調用push方法 轉頁
-      // console.log(this.$router);
-      // console.log(item);
       this.$router.push(`/product/${item.id}`);
     },
     getRingProducts() {
@@ -206,9 +204,7 @@ export default {
           arr.push(item);
         }
       });
-      // console.log(arr);
       this.products = arr;
-      // console.log(this.products);
     },
     getLoversRingProducts() {
       const arr = [];
@@ -217,9 +213,7 @@ export default {
           arr.push(item);
         }
       });
-      // console.log(arr);
       this.products = arr;
-      // console.log(this.products);
     },
     getBraceletProducts() {
       const arr = [];
@@ -228,9 +222,7 @@ export default {
           arr.push(item);
         }
       });
-      // console.log(arr);
       this.products = arr;
-      // console.log(this.products);
     },
     getNecklaceProducts() {
       const arr = [];
@@ -239,9 +231,7 @@ export default {
           arr.push(item);
         }
       });
-      // console.log(arr);
       this.products = arr;
-      // console.log(this.products);
     },
     addCart(id, _qty = 1) {
       // 客戶購物 [免驗證]-加入購物車
@@ -252,22 +242,27 @@ export default {
         product_id: id,
         qty: _qty,
       };
-      // console.log(url, { data: cart });
       this.$http
         .post(url, { data: cart })
         .then((res) => {
           if (res.data.success) {
-            // 如果成功 跳出提示
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+            });
             // 對應front.vue的emitter監聽
             emitter.emit('updata-cart');
           } else {
-            // 如果未成功加入 跳出提示
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
   },
@@ -279,14 +274,22 @@ export default {
     this.$http
       .get(url)
       .then((res) => {
-        // console.log(res);
-        this.products = res.data.products;
-        this.categoryProducts = res.data.products;
-        this.pagination = res.data.pagination;
-        // console.log(this.products);
+        if (res.data.success) {
+          this.products = res.data.products;
+          this.categoryProducts = res.data.products;
+          this.pagination = res.data.pagination;
+        } else {
+          this.$swal({
+            title: res.data.message,
+            icon: 'error',
+          });
+        }
       })
       .catch((err) => {
-        console.log(err);
+        this.$swal({
+          title: err,
+          icon: 'error',
+        });
       });
   },
 };

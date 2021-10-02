@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading></Loading>
+    <Loading/>
   </div>
   <!-- 目前動作區塊 -->
   <div class="row text-center">
@@ -122,16 +122,19 @@ export default {
         .get(url)
         .then((res) => {
           if (res.data.success) {
-            // console.log(res.data.data.carts);
             this.cartProduct = res.data.data.carts;
-            console.log(this.cartProduct);
-            // console.log(typeof this.cartProduct);
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     countAllPrice() {
@@ -143,17 +146,21 @@ export default {
         .get(url)
         .then((res) => {
           if (res.data.success) {
-            // console.log(res.data.data.carts);
             res.data.data.carts.forEach((item) => {
               this.countPrice += item.final_total;
             });
-            // console.log(this.countPrice);
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     goToCheckOrderer() {
@@ -170,25 +177,30 @@ export default {
       if (window.confirm('已確定資料無誤，確定送出訂單嗎?') === true) {
         // 客戶購物 [免驗證]-結帳頁面
         // [API]: /api/:api_path/order [方法]: post
-        // console.log(this.data);
         const { data } = this;
-        // console.log(data);
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
         this.$http
           .post(url, { data })
           .then((res) => {
             if (res.data.success) {
-              // console.log(res);
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+              });
               this.goToCheckOrderer();
               // 對應front.vue的emitter監聽
               emitter.emit('updata-cart');
             } else {
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+                icon: 'error',
+              });
             }
           })
           .catch((err) => {
-            console.log(err);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       }
     },
@@ -197,7 +209,6 @@ export default {
     this.getCartList();
     this.countAllPrice();
     this.receiveQuery();
-    // console.log(this.email);
   },
 };
 </script>

@@ -40,7 +40,7 @@
             >
           </li> -->
           <li>
-            <button type="button" class="btn nav-link" @click="signout">
+            <button type="button" class="btn nav-link" @click="logout">
               登出
             </button>
           </li>
@@ -76,26 +76,50 @@ export default {
         // 登入及驗證-檢查用戶是否仍持續登入
         const url = `${process.env.VUE_APP_API}api/user/check`;
         this.$http.post(url).then((res) => {
-          // console.log(res);
           if (res.data.success) {
             this.checkSuccess = true;
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
             this.$router.push('/login');
           }
         });
       } else {
-        alert('未有登入資訊');
+        this.$swal({
+          title: '未有登入資訊',
+          icon: 'error',
+        });
         this.$router.push('/login');
       }
     },
     // 登出並清除token轉回登入頁
-    signout() {
-      // 清除 token 的語法 這是將 cookie 中的 token 及到期日清空的語法。
-      // document.cookie = '（你的token名）=; expires=; path=/';
-      document.cookie = 'hexToken=;expires=; path=/;';
-      alert('已清除token登出');
-      this.$router.push('/login');
+    logout() {
+      const url = `${process.env.VUE_APP_API}logout`;
+      this.$http.post(url)
+        .then((res) => {
+          if (res.data.success) {
+            // 清除 token 的語法 這是將 cookie 中的 token 及到期日清空的語法。
+            // document.cookie = '（你的token名）=; expires=; path=/';
+            document.cookie = 'hexToken=;expires=; path=/;';
+            this.$swal({
+              title: res.data.message,
+            });
+            this.$router.push('/login');
+          } else {
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
+          }
+        })
+        .catch((err) => {
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
+        });
     },
   },
   created() {

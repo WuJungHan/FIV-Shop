@@ -218,8 +218,7 @@
     <section class="container mt-3 news">
       <h2 class="border-bottom pb-2 fw-bold">最新消息</h2>
       <!-- news first-product  -->
-      <div class="mt-3 row">
-        <div class="col-0 col-md-1"></div>
+      <div class="mt-3 row justify-content-center">
         <div class="col-12 col-md-5">
           <div
             class="
@@ -258,7 +257,6 @@
             >產品詳情</router-link
           >
         </div>
-        <div class="col-0 col-md-1"></div>
       </div>
       <!-- news second-product-bg -->
       <div class="mt-3 row">
@@ -362,7 +360,7 @@
           ></iframe>
         </div>
         <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
-          <div class="">
+          <div>
             <h3 class="fw-bold">每鍛傳奇，造就不斐</h3>
             <p>千錘百鍊，匠魂鍛造，方能永垂不朽！</p>
           </div>
@@ -383,21 +381,20 @@
       "
     >
       <div class="container">
-        <h2 class="">有任何我們能幫助您的嗎？</h2>
-        <form class="" action="#">
-          <label for="email" class="">
+        <h2>有任何我們能幫助您的嗎？</h2>
+        <form action="#">
+          <label for="email">
             輸入電子信箱<br />
             將有專業人員在線幫您解決所有問題</label
           ><br />
           <input
-            class=""
             type="email"
             name="email"
             id="email"
             placeholder="example@gmail.com"
             v-model="email"
           />
-          <input class="" type="submit" value="送出" />
+          <input type="submit" value="送出" />
         </form>
       </div>
     </section>
@@ -440,18 +437,11 @@ export default {
     //   this.player.playVideo();
     // },
     // playing() {
-    //   console.log(' we are watching!!!');
     // },
     goToProducts() {
       this.$router.push('/products');
     },
   },
-  computed: {
-    // player() {
-    //   return this.$refs.youtube.player;
-    // },
-  },
-  created() {},
 };
 </script>
 

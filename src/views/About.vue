@@ -20,11 +20,7 @@ export default {
   // 建立created 生命週期
   created() {
     // 用this.$http.方法 來調用vue axios 就不用每次都需要  import
-    // console.log(this);
-    // console.log(this.$http);
-    // console.log(this.$http.get);
     // 查看.env檔 變數使用process.env.VUE_APP_自訂義名稱
-    // console.log(process.env.VUE_APP_API, process.env.VUE_APP_PATH);
   },
 };
 </script>

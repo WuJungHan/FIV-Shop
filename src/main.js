@@ -9,7 +9,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 
 // jquery (由於目前bs5不需要jQuery 故有必要再使用)
-// import $ from 'jquery';
+import $ from 'jquery';
 
 // bootstrap
 import 'bootstrap';
@@ -44,6 +44,10 @@ import { localize, setLocale } from '@vee-validate/i18n';
 // vee-validate匯入繁體中文語系檔案
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 
+// 修改跳出視窗套件
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 // js檔 千分號函式 全域使用
 import toCurrency from './assets/javascript/toCurrency';
 
@@ -55,7 +59,7 @@ import router from './router';
 
 // 讓jQuery 變成全域
 // 在想使用的頁面 js 輸入 /* global $ */ 去忽略es link報錯問題
-// window.$ = $;
+window.$ = $;
 
 // vee-validate定義驗證規則
 // 將全部規則rules 載出來
@@ -93,10 +97,16 @@ app.config.globalProperties.$toCurrency = toCurrency;
 // MenuIcon
 // app.component('menu-icon', MenuIcon);
 
+const options = {
+  confirmButtonColor: '#41b882',
+  cancelButtonColor: '#ff7674',
+  icon: 'success',
+};
 // 啟用
 // app.use(VueYoutube);
 // app.use(BootstrapVue);
 // app.use(IconsPlugin);
+app.use(VueSweetalert2, options);
 app.use(VueAxios, axios);
 app.use(router);
 app.mount('#app');

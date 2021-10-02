@@ -4,7 +4,7 @@
       <div class="col-10 col-md-6 col-lg-4">
         <h1 class="text-center fs-1 mb-5">
           請登入後台系統
-          <router-link class="" to="/">FIV5</router-link>
+          <router-link to="/">FIV5</router-link>
         </h1>
         <!-- 將type submit按鈕 預設為呼叫 axiosLogin函式-->
         <Form class="fs-5 text" v-slot="{ errors }" @submit="goToAdmin">
@@ -80,11 +80,9 @@ export default {
       this.$http
         .post(url, this.user)
         .then((res) => {
-          console.log(res);
           if (res.data.success) {
             // true
             // 登入成功後 expired=到期日 token=憑證 (到期日過憑證就無使用) uid=實際儲存在後端使用的身分
-            // console.log(res);//驗證
             // 解構寫法 同上兩行 更為精簡
             const { token, expired } = res.data;
             // onsole.log(token,expired);//驗證
@@ -93,16 +91,17 @@ export default {
             // 登入成功跳轉路由
             this.$router.push('/orders');
           } else {
-            // console.log(res.data.message);;
-            // 驗證data.message 狀態顯示
-            // 登入失敗或其他情況提示
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
-        .catch((error) => {
-          // 接收錯誤回傳
-          // handle error
-          console.log(error);
+        .catch((err) => {
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
   },

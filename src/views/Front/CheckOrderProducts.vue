@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading></Loading>
+    <Loading/>
   </div>
   <!-- 目前動作區塊 -->
   <div class="row text-center">
@@ -87,7 +87,7 @@
     <!-- 下一步 -->
     <div class="mb-3">
       <div class="d-flex justify-content-between">
-        <button class="btn btn-primary" @click="deleteAllProducts">
+        <button type="button" class="btn btn-primary" @click="deleteAllProducts">
           清空購物車
         </button>
         <router-link class="btn btn-primary" to="/check-orderer"
@@ -116,127 +116,148 @@ export default {
   },
   methods: {
     getCartList() {
-      // 客戶購物 [免驗證]-取得購物車列表
-      // /api/:api_path/cart get
+      // 客戶購物 [免驗證]-取得購物車列表 /api/:api_path/cart get
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       // this.$http 代替axios
       this.$http
         .get(url)
         .then((res) => {
           if (res.data.success) {
-            // console.log(res.data.data.carts);
             this.cartProduct = res.data.data.carts;
-            // console.log(this.cartProduct);
-            // console.log(typeof this.cartProduct);
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     countAllPrice() {
-      // 客戶購物 [免驗證]-取得購物車列表
-      // /api/:api_path/cart get
+      // 客戶購物 [免驗證]-取得購物車列表 /api/:api_path/cart get
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       // this.$http 代替axios
       this.$http
         .get(url)
         .then((res) => {
           if (res.data.success) {
-            // console.log(res.data.data.carts);
             res.data.data.carts.forEach((item) => {
               this.countPrice += item.final_total;
             });
-            // console.log(this.countPrice);
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     deleteProduct(id) {
-      // 客戶購物 [免驗證]-刪除某一筆購物車資料
-      // /api/:api_path/cart/:id
+      // 客戶購物 [免驗證]-刪除某一筆購物車資料 /api/:api_path/cart/:id
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${id}`;
-      // console.log(url);
       this.$http
         .delete(url)
         .then((res) => {
           if (res.data.success) {
-            // 如果成功 跳出提示
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+            });
             this.getCartList();
             this.countPrice = 0;
             this.countAllPrice();
             // 對應front.vue的emitter監聽
             emitter.emit('updata-cart');
           } else {
-            // 如果未成功加入 跳出提示
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     deleteAllProducts() {
-      // 客戶購物 [免驗證]-刪除全部購物車
-      // [API]: /api/:api_path/carts
+      // 客戶購物 [免驗證]-刪除全部購物車 /api/:api_path/carts
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`;
       this.$http
         .delete(url)
         .then((res) => {
           if (res.data.success) {
-            // 如果成功 跳出提示
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+            });
             this.getCartList();
             this.countPrice = 0;
             this.countAllPrice();
             // 對應front.vue的emitter監聽
             emitter.emit('updata-cart');
           } else {
-            // 如果未成功加入 跳出提示
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     productQtyAdd() {},
     productQtySubtract() {},
     updataProductQty(item) {
-      // console.log(item);
       if (item.qty > 0) {
         const data = {
           product_id: item.id,
           qty: item.qty,
         };
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
-        // console.log(data, url);
         this.$http
           .put(url, { data })
           .then((res) => {
             if (res.data.success) {
-              // 如果成功 跳出提示
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+              });
               this.getCartList();
               this.countPrice = 0;
               this.countAllPrice();
             } else {
-              // 如果未成功加入 跳出提示
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+                icon: 'error',
+              });
             }
           })
           .catch((err) => {
-            console.log(err);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       } else {
-        alert('數量不可小於零');
+        this.$swal({
+          title: '數量不可小於零',
+          icon: 'error',
+        });
       }
     },
   },

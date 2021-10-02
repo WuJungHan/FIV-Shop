@@ -1,7 +1,8 @@
 <template>
-  <div><Loading></Loading></div>
+  <div><Loading/></div>
   <main class="container mt-3">
     <button
+      type="button"
       class="btn btn-primary"
       data-bs-toggle="modal"
       data-bs-target="#addProductModal"
@@ -21,10 +22,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="" v-for="item in productsAry" :key="item.id">
+        <tr v-for="item in productsAry" :key="item.id">
           <th>
             <div
-              class=""
               style="width=120px;height: 120px;background-size: cover;
             background-position: center; background-repeat:no-repeat;"
               :style="{ 'background-image': `url(${item.imageUrl})` }"
@@ -50,6 +50,7 @@
           </th>
           <th>
             <button
+              type="button"
               class="btn btn-outline-success me-1"
               @click="getEditProduct(item.id)"
               data-bs-toggle="modal"
@@ -57,7 +58,7 @@
             >
               編輯
             </button>
-            <button class="btn btn-primary" @click="deleteProduct(item)">
+            <button type="button" class="btn btn-primary" @click="deleteProduct(item)">
               刪除
             </button>
           </th>
@@ -138,6 +139,7 @@
                   <!-- 使用 push加入imagesUrl陣列末端-->
                   <!-- @click="tempProduct.imagesUrl.push('')" -->
                   <button
+                    type="button"
                     class="btn btn-outline-primary btn-sm d-block w-100"
                     @click="tempProduct.imagesUrl.push('')"
                   >
@@ -149,6 +151,7 @@
                   <!-- 使用 pop 把imagesUrl陣列最末端資料刪除-->
                   <!-- @click="tempProduct.imagesUrl.pop()" -->
                   <button
+                    type="button"
                     class="btn btn-outline-danger btn-sm d-block w-100"
                     @click="tempProduct.imagesUrl.pop()"
                   >
@@ -161,6 +164,7 @@
               <div v-else>
                 <!-- @click="createImages" -->
                 <button
+                  type="button"
                   class="btn btn-outline-primary btn-sm d-block w-100"
                   @click="createImages"
                 >
@@ -368,6 +372,7 @@
                   <!-- 使用 push加入imagesUrl陣列末端-->
                   <!-- @click="tempProduct.imagesUrl.push('')" -->
                   <button
+                    type="button"
                     class="btn btn-outline-primary btn-sm d-block w-100"
                     @click="addProductModal.data.imagesUrl.push('')"
                   >
@@ -379,6 +384,7 @@
                   <!-- 使用 pop 把imagesUrl陣列最末端資料刪除-->
                   <!-- @click="tempProduct.imagesUrl.pop()" -->
                   <button
+                    type="button"
                     class="btn btn-outline-danger btn-sm d-block w-100"
                     @click="addProductModal.data.imagesUrl.pop()"
                   >
@@ -391,6 +397,7 @@
               <div v-else>
                 <!-- @click="createImages" -->
                 <button
+                  type="button"
                   class="btn btn-outline-primary btn-sm d-block w-100"
                   @click="createImages"
                 >
@@ -593,70 +600,78 @@ export default {
       this.$http
         .get(url) // 資料庫每個人path是獨立的
         .then((res) => {
-          // console.log(res);
           if (res.data.success) {
             this.productsAry = res.data.products; // 將空陣列賦與後台products資料
             this.pagination = res.data.pagination; // 將頁碼res帶到data內供元件使用
-            console.log(this.productsAry, this.pagination);
           } else {
-            // console.log(productsData);
-            alert('請重新登入!');
+            this.$swal({
+              title: '請重新登入!',
+              icon: 'error',
+            });
           }
         })
-        .catch((error) => {
+        .catch((err) => {
           //  接收錯誤回傳
-          // handle error
-          console.log(error);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
     getEditProduct(id) {
       this.productsAry.forEach((item) => {
         if (item.id === id) {
           this.tempProduct = item;
-          // console.log(this.tempProduct);
         }
       });
     },
     deleteProduct(item) {
-      // 管理控制台 [需驗證]- 刪除產品
-      // [API]: /api/:api_path/admin/product/:product_id [方法]: delete
+      // 管理控制台 [需驗證]- 刪除產品 /api/:api_path/admin/product/:product_id [方法]: delete
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
       const data = this.tempProduct;
       if (window.confirm(`確定刪除" ${item.title} "產品嗎?`) === true) {
         this.$http
           .delete(url, { data }) // 資料庫每個人path是獨立的
           .then((res) => {
-            // console.log(res);
             if (res.data.success) {
-              alert('已刪除產品');
+              this.$swal({
+                title: '已刪除產品',
+              });
               this.getProducts();
             } else {
-              // console.log(productsData);
-              alert(res.data.success);
+              this.$swal({
+                title: res.data.success,
+                icon: 'error',
+              });
             }
           })
-          .catch((error) => {
+          .catch((err) => {
             //  接收錯誤回傳
-            // handle error
-            console.log(error);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       } else {
-        alert('已取消');
+        this.$swal({
+          title: '已取消',
+          icon: 'error',
+        });
       }
     },
     addProduct() {
-      // 管理控制台 [需驗證] - 商品建立
+      // 管理控制台 [需驗證] - 商品建立 /api/:api_path/admin/product [方法]: post 帶參數{ data }
       // title(String)、category(String)、unit(String)、origin_price(Number)、price(Number) 為必填欄位
-      // [API]: /api/:api_path/admin/product [方法]: post 帶參數{ data }
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
       const { data } = this.addProductModal;
       if (window.confirm('確定新增產品嗎?') === true) {
         this.$http
           .post(url, { data }) // 資料庫每個人path是獨立的
           .then((res) => {
-            // console.log(res);
             if (res.data.success) {
-              alert('已建立產品!');
+              this.$swal({
+                title: '已建立產品!',
+              });
               this.getProducts();
               this.addProductModal.data.title = '';
               this.addProductModal.data.category = '';
@@ -669,24 +684,30 @@ export default {
               this.addProductModal.data.imageUrl = '';
               this.addProductModal.data.imagesUrl = [];
             } else {
-              // console.log(res.data.message);
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+                icon: 'error',
+              });
             }
           })
-          .catch((error) => {
+          .catch((err) => {
             //  接收錯誤回傳
-            // handle error
-            console.log(error);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       } else {
-        alert('已取消');
+        this.$swal({
+          title: '已取消',
+          icon: 'error',
+        });
       }
     },
     editProduct() {
-      // 管理控制台 [需驗證]-修改產品
+      // 管理控制台 [需驗證]-修改產品  /api/:api_path/admin/product/:id [方法]: put
       /* [說明]: id(String)、title(String)、category(String)、
       unit(String)、origin_price(Number)、price(Number) 為必填欄位 */
-      // [API]: /api/:api_path/admin/product/:id [方法]: put
       const data = this.tempProduct;
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       if (
@@ -695,21 +716,30 @@ export default {
         this.$http
           .put(url, { data })
           .then((res) => {
-            // console.log(res);
             if (res.data.success) {
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+              });
               this.getProducts();
             } else {
-              alert(res.data.message);
+              this.$swal({
+                title: res.data.message,
+                icon: 'error',
+              });
             }
           })
-          .catch((error) => {
+          .catch((err) => {
             //  接收錯誤回傳
-            // handle error
-            console.log(error);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       } else {
-        alert('已取消');
+        this.$swal({
+          title: '已取消',
+          icon: 'error',
+        });
       }
     },
     updateIsEnable(item) {
@@ -720,25 +750,29 @@ export default {
         data.is_enabled = 0;
       }
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
-      console.log(data, url);
       // 上架
       if (data.is_enabled === 1) {
         this.$http
           .put(url, { data }) // 資料庫每個人path是獨立的
           .then((res) => {
-            // console.log(res);
             if (res.data.success) {
-              alert('已上架產品');
+              this.$swal({
+                title: '已上架產品',
+              });
               this.getProducts();
             } else {
-              // console.log(productsData);
-              alert(res.data.success);
+              this.$swal({
+                title: res.data.message,
+                icon: 'error',
+              });
             }
           })
-          .catch((error) => {
+          .catch((err) => {
             //  接收錯誤回傳
-            // handle error
-            console.log(error);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       }
       // 下架
@@ -746,19 +780,24 @@ export default {
         this.$http
           .put(url, { data }) // 資料庫每個人path是獨立的
           .then((res) => {
-            // console.log(res);
             if (res.data.success) {
-              alert('已下架產品');
+              this.$swal({
+                title: '已下架產品',
+              });
               this.getProducts();
             } else {
-              // console.log(productsData);
-              alert(res.data.success);
+              this.$swal({
+                title: res.data.message,
+                icon: 'error',
+              });
             }
           })
-          .catch((error) => {
+          .catch((err) => {
             //  接收錯誤回傳
-            // handle error
-            console.log(error);
+            this.$swal({
+              title: err,
+              icon: 'error',
+            });
           });
       }
     },

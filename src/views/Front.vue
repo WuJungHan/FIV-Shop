@@ -152,16 +152,19 @@ export default {
         .get(url)
         .then((res) => {
           if (res.data.success) {
-            // console.log(res.data.data.carts);
             this.cartData = res.data.data;
-            // console.log(this.cartData);
-            // console.log(typeof this.cartAry);
           } else {
-            alert(res.data.message);
+            this.$swal({
+              title: res.data.message,
+              icon: 'error',
+            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.$swal({
+            title: err,
+            icon: 'error',
+          });
         });
     },
   },

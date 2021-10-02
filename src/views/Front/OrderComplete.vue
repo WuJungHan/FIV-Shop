@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Loading></Loading>
+    <Loading/>
   </div>
   <div
     class="container w-50 text-center mb-3 animate__animated animate__fadeIn"
@@ -20,11 +20,6 @@ export default {
   components: {
     Loading,
   },
-  data() {
-    return {};
-  },
-  methods: {},
-  created() {},
 };
 </script>
 

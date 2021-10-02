@@ -1,7 +1,7 @@
 <template>
   <div>
-  <Loading></Loading>
-</div>
+    <Loading/>
+  </div>
   <!-- 目前動作區塊 -->
   <div class="row text-center">
     <div class="col-4">
@@ -85,7 +85,10 @@
               v-model="data.user.address"
             ></Field>
             <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
-            <div id="orderAddressHelp" class="form-text text-warning fs-5"></div>
+            <div
+              id="orderAddressHelp"
+              class="form-text text-warning fs-5"
+            ></div>
             <!-- 信箱 -->
             <label for="ordererEmail">信箱</label>
             <Field
@@ -100,28 +103,37 @@
               v-model="data.user.email"
             ></Field>
             <ErrorMessage name="信箱" class="invalid-feedback"></ErrorMessage>
-            <div id="ordererEmailHelp" class="form-text text-warning fs-5 mb-5"></div>
+            <div
+              id="ordererEmailHelp"
+              class="form-text text-warning fs-5 mb-5"
+            ></div>
             <!-- 備註 -->
-            <label for="message">備註</label><br>
-            <textarea id="message" name="message" v-model="data.message"
-            style="resize:none;width:100%;height:80px;"
-            maxlength="30" placeholder="請輸入備註,最多30個字"></textarea>
+            <label for="message">備註</label><br />
+            <textarea
+              id="message"
+              name="message"
+              v-model="data.message"
+              style="resize: none; width: 100%; height: 80px"
+              maxlength="30"
+              placeholder="請輸入備註,最多30個字"
+            ></textarea>
           </div>
         </Form>
       </div>
     </div>
   </section>
   <!-- 回上頁&下一步 -->
-    <div class="mb-3">
-      <div class="d-flex justify-content-between">
-        <router-link class="btn btn-primary" to="/cart">回上頁</router-link>
-        <btn class="btn btn-primary" @click="goToCheckOrderComplete">下一步</btn>
-      </div>
+  <div class="mb-3">
+    <div class="d-flex justify-content-between">
+      <router-link class="btn btn-primary" to="/cart">回上頁</router-link>
+      <button type="button" class="btn btn-primary" @click="goToCheckOrderComplete">
+        下一步
+      </button>
     </div>
+  </div>
 </template>
 
 <style lang="scss">
-
 </style>
 
 <script>
@@ -147,27 +159,31 @@ export default {
   },
   methods: {
     goToCheckOrderComplete() {
-      if (this.data.user.email !== '' && this.data.user.name !== '' && this.data.user.tel !== '' && this.data.user.address !== '') {
-        // console.log(this.$data.data);
+      if (
+        this.data.user.email !== '' && this.data.user.name !== '' && this.data.user.tel !== '' && this.data.user.address !== ''
+      ) {
         const { message } = this.$data.data;
         const { address } = this.$data.data.user;
         const { email } = this.$data.data.user;
         const { name } = this.$data.data.user;
         const { tel } = this.$data.data.user;
-        // console.log(this.$data.data.user.address);
         this.$router.push({
           path: '/check-order-complete',
           query: {
-            message, address, email, name, tel,
+            message,
+            address,
+            email,
+            name,
+            tel,
           },
         });
       } else {
-        alert('請將資料填寫完畢');
+        this.$swal({
+          title: '請將資料填寫完畢',
+          icon: 'error',
+        });
       }
     },
-  },
-  created() {
-
   },
 };
 </script>
