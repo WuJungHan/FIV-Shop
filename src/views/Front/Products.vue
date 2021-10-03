@@ -14,10 +14,10 @@
         <input
           class="me-2"
           type="search"
-          placeholder="請輸入產品名稱"
+          v-model="search"
+          placeholder="請輸入產品名稱或類別"
           aria-label="Search"
         />
-        <button type="button" class="btn btn-outline-primary">尋找手造</button>
       </div>
     </nav>
 
@@ -112,7 +112,7 @@
       <!-- 主商品card區塊 -->
       <div class="col-12 col-md-10 d-flex flex-wrap">
         <div
-          v-for="item in products"
+          v-for="item in filterProducts"
           :key="item.id"
           class="card mb-3 me-5 my-card animate__animated animate__fadeIn"
           style="width: 18rem"
@@ -187,7 +187,15 @@ export default {
       products: [],
       categoryProducts: [],
       pagination: {},
+      search: '',
     };
+  },
+  computed: {
+    // 將輸入文字match產品title或category 並渲染於畫面
+    filterProducts() {
+      return this.products.filter((item) => item.title.match(this.search)
+      || item.category.match(this.search));
+    },
   },
   methods: {
     getProducts() {

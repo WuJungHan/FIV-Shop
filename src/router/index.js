@@ -92,7 +92,7 @@ const routes = [
   // --後台--
   // 後台Dashboard主頁面路由
   {
-    path: '/dashboard',
+    path: '/Dashboard',
     // name: '',
     component: () => import('../views/Dashboard.vue'),
     children: [

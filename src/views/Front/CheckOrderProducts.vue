@@ -82,7 +82,8 @@
     <div class="row">
       <div class="col-0 col-md-7"></div>
       <div class="col-12 col-md-1">共{{ cartProduct.length }}項</div>
-      <div class="col-12 col-md-4">總金額:{{ $toCurrency(countPrice) }}</div>
+<!-- {{ $toCurrency(countPrice) }} -->
+      <div class="col-12 col-md-4">總金額: {{ $toCurrency(countTotalPrice) }}</div>
     </div>
     <!-- 下一步 -->
     <div class="mb-3">
@@ -111,8 +112,17 @@ export default {
     return {
       id: '',
       cartProduct: [],
-      countPrice: 0,
     };
+  },
+  computed: {
+    // countPrice 直接顯示於html 當this.cartProduct有任何變化即會再次運作
+    countTotalPrice() {
+      let total = 0;
+      this.cartProduct.forEach((item) => {
+        total += (item.product.price * item.qty);
+      });
+      return total;
+    },
   },
   methods: {
     getCartList() {
@@ -124,31 +134,6 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.cartProduct = res.data.data.carts;
-          } else {
-            this.$swal({
-              title: res.data.message,
-              icon: 'error',
-            });
-          }
-        })
-        .catch((err) => {
-          this.$swal({
-            title: err,
-            icon: 'error',
-          });
-        });
-    },
-    countAllPrice() {
-      // 客戶購物 [免驗證]-取得購物車列表 /api/:api_path/cart get
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      // this.$http 代替axios
-      this.$http
-        .get(url)
-        .then((res) => {
-          if (res.data.success) {
-            res.data.data.carts.forEach((item) => {
-              this.countPrice += item.final_total;
-            });
           } else {
             this.$swal({
               title: res.data.message,
@@ -175,7 +160,6 @@ export default {
             });
             this.getCartList();
             this.countPrice = 0;
-            this.countAllPrice();
             // 對應front.vue的emitter監聽
             emitter.emit('updata-cart');
           } else {
@@ -204,7 +188,6 @@ export default {
             });
             this.getCartList();
             this.countPrice = 0;
-            this.countAllPrice();
             // 對應front.vue的emitter監聽
             emitter.emit('updata-cart');
           } else {
@@ -239,7 +222,6 @@ export default {
               });
               this.getCartList();
               this.countPrice = 0;
-              this.countAllPrice();
             } else {
               this.$swal({
                 title: res.data.message,
@@ -263,7 +245,6 @@ export default {
   },
   created() {
     this.getCartList();
-    this.countAllPrice();
   },
 };
 </script>

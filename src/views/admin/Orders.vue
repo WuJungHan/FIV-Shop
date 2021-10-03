@@ -7,6 +7,7 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
+          <th scope="col">訂單建立時間</th>
           <th scope="col">訂單編號</th>
           <th scope="col" class="d-none d-md-table-cell">訂購人姓名</th>
           <th scope="col" class="d-none d-md-table-cell">訂購人電話</th>
@@ -18,6 +19,12 @@
       </thead>
       <tbody class="fw-bold">
         <tr v-for="item in orders" :key="item.id">
+          <td>{{new Date(item.create_at * 1000).getFullYear()+
+          "/"+(new Date(item.create_at * 1000).getMonth()+1)+
+          "/"+new Date(item.create_at * 1000).getDate()+
+          " "+new Date(item.create_at * 1000).getHours()+
+          ":"+new Date(item.create_at * 1000).getMinutes()+
+          ":"+new Date(item.create_at * 1000).getSeconds()   }}</td>
           <td>{{ item.id }}</td>
           <td class="d-none d-md-table-cell">{{ item.user.name }}</td>
           <td class="d-none d-md-table-cell">{{ item.user.tel }}</td>
@@ -54,6 +61,7 @@ export default {
     return {
       id: '',
       orders: [],
+      newDate: [],
     };
   },
   methods: {
@@ -83,7 +91,7 @@ export default {
       this.$router.push(`/order/${item.id}`);
     },
     deleteOrder(item) {
-      if (window.confirm(`確定刪除${item.create_at}訂單嗎?`) === true) {
+      if (window.confirm(`確定刪除${item.id}訂單嗎?`) === true) {
         // 管理控制台 [需驗證] - 刪除訂單 /api/:api_path/admin/order/:id [方法]: delete
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${item.id}`;
         this.$http

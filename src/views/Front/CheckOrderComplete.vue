@@ -41,7 +41,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td class="text-end">總計：＄{{ $toCurrency(countPrice) }}</td>
+            <td class="text-end">總計：＄{{ $toCurrency(total) }}</td>
           </tr>
         </tbody>
       </table>
@@ -81,9 +81,8 @@
       <router-link class="btn btn-primary" to="/check-orderer"
         >回上頁</router-link
       >
-      <btn class="btn btn-primary" @click="finishCheckOut_goToComplete"
-        >完成訂單</btn
-      >
+      <button class="btn btn-primary" @click="finishCheckOut_goToComplete"
+        >完成訂單</button>
     </div>
   </div>
 </template>
@@ -100,7 +99,7 @@ export default {
   data() {
     return {
       cartProduct: [],
-      countPrice: 0,
+      // countPrice: 0,
       data: {
         user: {
           email: '',
@@ -112,10 +111,19 @@ export default {
       },
     };
   },
+  computed: {
+    // 計算總價total 直接顯示於html 當this.cartProduct有任何變化即會再次運作
+    total() {
+      let total = 0;
+      this.cartProduct.forEach((item) => {
+        total += item.final_total;
+      });
+      return total;
+    },
+  },
   methods: {
     getCartList() {
-      // 客戶購物 [免驗證]-取得購物車列表
-      // /api/:api_path/cart get
+      // 客戶購物 [免驗證]-取得購物車列表 /api/:api_path/cart get
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       // this.$http 代替axios
       this.$http
@@ -123,32 +131,6 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.cartProduct = res.data.data.carts;
-          } else {
-            this.$swal({
-              title: res.data.message,
-              icon: 'error',
-            });
-          }
-        })
-        .catch((err) => {
-          this.$swal({
-            title: err,
-            icon: 'error',
-          });
-        });
-    },
-    countAllPrice() {
-      // 客戶購物 [免驗證]-取得購物車列表
-      // /api/:api_path/cart get
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      // this.$http 代替axios
-      this.$http
-        .get(url)
-        .then((res) => {
-          if (res.data.success) {
-            res.data.data.carts.forEach((item) => {
-              this.countPrice += item.final_total;
-            });
           } else {
             this.$swal({
               title: res.data.message,
@@ -175,8 +157,7 @@ export default {
     },
     finishCheckOut_goToComplete() {
       if (window.confirm('已確定資料無誤，確定送出訂單嗎?') === true) {
-        // 客戶購物 [免驗證]-結帳頁面
-        // [API]: /api/:api_path/order [方法]: post
+        // 客戶購物 [免驗證]-結帳頁面 /api/:api_path/order [方法]: post
         const { data } = this;
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
         this.$http
@@ -207,7 +188,6 @@ export default {
   },
   created() {
     this.getCartList();
-    this.countAllPrice();
     this.receiveQuery();
   },
 };

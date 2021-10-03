@@ -18,7 +18,12 @@
       <tbody>
         <tr>
           <td>訂單產生日期：</td>
-          <td>{{ order.create_at }}</td>
+          <td>{{ new Date(order.create_at * 1000).getFullYear()+
+          "/"+(new Date(order.create_at * 1000).getMonth()+1)+
+          "/"+new Date(order.create_at * 1000).getDate()+
+          " "+new Date(order.create_at * 1000).getHours()+
+          ":"+new Date(order.create_at * 1000).getMinutes()+
+          ":"+new Date(order.create_at * 1000).getSeconds()}}</td>
         </tr>
         <tr>
           <td>訂單金額：</td>
