@@ -37,7 +37,7 @@
       </div>
       <div class="col-12 col-md-6 d-flex flex-column justify-content-center">
         <div>
-          <h2>{{ product.title }}</h2>
+          <h2 class="fw-bolder">{{ product.title }}</h2>
           <p>{{ product.category }}</p>
           <h3>{{ product.description }}</h3>
           <p>{{ product.content }}</p>

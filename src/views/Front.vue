@@ -44,11 +44,11 @@
           </li> -->
             <li class="nav-item">
               <router-link class="nav-link" aria-current="page" to="/shop">
-                FIV5門市
+                FIV5門市＆常見問題
               </router-link>
             </li>
           </ul>
-          <ul class="d-flex">
+          <ul class="d-inline-block d-lg-flex">
             <li class="nav-item position-relative">
               <router-link
                 class="nav-link text-white"

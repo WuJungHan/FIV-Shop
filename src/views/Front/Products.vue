@@ -1,7 +1,7 @@
 <template>
   <main class="container mt-3">
     <Loading />
-    <nav class="d-flex justify-content-between border-bottom">
+    <nav class="d-flex justify-content-between border-bottom pb-2">
       <div>
         <router-link aria-current="page" to="/index"
           >FIV5品牌首頁</router-link
@@ -23,7 +23,7 @@
 
     <div class="row mt-3">
       <!-- 側邊導覽 -->
-      <div class="col-12 col-md-2">
+      <div class="col-12 col-lg-2">
         <div class="list-group text-center">
           <ul>
             <li>
@@ -110,12 +110,13 @@
         </div>
       </div>
       <!-- 主商品card區塊 -->
-      <div class="col-12 col-md-10 d-flex flex-wrap">
+      <div class="col-12 col-lg-10 d-flex flex-wrap">
+        <div class="row ps-3 pe-3 p-sm-0">
         <div
           v-for="item in filterProducts"
           :key="item.id"
-          class="card mb-3 me-5 my-card animate__animated animate__fadeIn"
-          style="width: 18rem"
+          class="card p-0 mb-3 me-5 my-card animate__animated animate__fadeIn
+          col-12 col-md-3"
         >
           <!-- card background-image -->
           <div class="my-card-img-div">
@@ -163,6 +164,8 @@
               立即選購
             </button>
           </div>
+        </div>
+
         </div>
       </div>
     </div>
@@ -313,15 +316,13 @@ export default {
     box-shadow: 0px 0px 10px #464e46;
   }
 }
-.my-card-width {
-  width: 33%;
-}
+// .my-card-width {
+//   width: 33%;
+// }
 .my-card-img-div {
   overflow: hidden;
 }
 .my-card-img {
-  width: 100%;
-  height: 250px;
   transform: scale(1, 1);
   transition: 0.5s;
   &:hover {

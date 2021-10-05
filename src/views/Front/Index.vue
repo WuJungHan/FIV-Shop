@@ -86,7 +86,6 @@
           class="
             col-6 col-md-3
             product-icon
-            mt-3 mt-md-0
             animate__animated animate__fadeInDown animate__delay-1s
           "
         >
@@ -141,6 +140,7 @@
           class="
             col-6 col-md-3
             product-icon
+            mt-3 mt-md-0
             animate__animated animate__fadeInDown animate__delay-3s
           "
         >
@@ -214,9 +214,9 @@
         </div>
       </div>
     </section>
-    <!-- index FIV5 最新消息 -->
+    <!-- index FIV5 最新手造 -->
     <section class="container mt-3 news">
-      <h2 class="border-bottom pb-2 fw-bold">最新消息</h2>
+      <h2 class="border-bottom pb-2 fw-bold">最新手造</h2>
       <!-- news first-product  -->
       <div class="mt-3 row justify-content-center">
         <div class="col-12 col-md-5">
@@ -259,7 +259,7 @@
         </div>
       </div>
       <!-- news second-product-bg -->
-      <div class="mt-3 row">
+      <div class="mt-3 row justify-content-center d-none d-sm-flex">
         <div class="col-0 col-md-1"></div>
         <div
           class="
@@ -301,9 +301,49 @@
         </div>
         <div class="col-0 col-md-1"></div>
       </div>
+      <!-- rwd news second-product-bg -->
+      <div class="mt-3 row justify-content-center d-flex d-sm-none">
+        <div class="col-12 col-md-5">
+          <div
+            class="
+              second-product-bg
+              product-bg
+              rounded-1
+              animate__animated animate__fadeIn
+            "
+            style=""
+          >
+            <div
+              class="
+                hover
+                text-white
+                d-flex
+                justify-content-center
+                align-items-center
+              "
+            >
+              <h4 class="product-bg-text caveat">FIV5 –「麻花捲捲系列」</h4>
+            </div>
+          </div>
+        </div>
+        <div
+          class="
+            col-12 col-md-5
+            d-flex
+            flex-column
+            justify-content-center
+            text-center
+          "
+        >
+          <h3 class="fw-bold">麻花捲捲系列</h3>
+          <p class="fs-5">各式胖瘦繞線，就想起好吃的麻花捲 。</p>
+          <router-link class="btn btn-primary w-50 mx-auto" to="/products"
+            >產品詳情</router-link
+          >
+        </div>
+      </div>
       <!-- news third-product-bg-->
-      <div class="mt-3 row">
-        <div class="col-0 col-md-1"></div>
+      <div class="mt-3 row justify-content-center">
         <div class="col-12 col-md-5">
           <div
             class="
@@ -342,7 +382,6 @@
             >產品詳情</router-link
           >
         </div>
-        <div class="col-0 col-md-1"></div>
       </div>
     </section>
     <!-- 飾品工藝 影片+介紹區塊 -->
@@ -548,13 +587,13 @@ export default {
 .news {
   transition: 1s;
   .first-product-bg {
-    background: url('https://upload.cc/i1/2021/06/06/tXB4zw.jpg') center / 100%;
+    background: url('https://upload.cc/i1/2021/06/06/tXB4zw.jpg') center / cover;
   }
   .second-product-bg {
-    background: url('https://upload.cc/i1/2021/06/06/rWBvSd.jpg') center / 100%;
+    background: url('https://upload.cc/i1/2021/06/06/rWBvSd.jpg') center / cover;
   }
   .third-product-bg {
-    background: url('https://upload.cc/i1/2021/06/06/4o0tSQ.jpg') center / 100%;
+    background: url('https://upload.cc/i1/2021/06/06/4o0tSQ.jpg') center / cover;
     background-position: 0px 50px;
   }
   .product-bg {

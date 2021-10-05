@@ -56,7 +56,7 @@
             如何付款?
           </a>
           <div class="collapse" id="howToPay">
-            <div class="card card-body">目前僅接受貨到付款。</div>
+            <div class="card card-body fw-bolder">目前僅接受貨到付款。</div>
           </div>
         </li>
         <li>
@@ -72,7 +72,7 @@
             如何前往門市?
           </a>
           <div class="collapse" id="howToGo">
-            <div class="card card-body">
+            <div class="card card-body fw-bolder">
               您可透過自行開車或搭乘大眾運輸工具前往門市。
             </div>
           </div>
@@ -91,7 +91,7 @@
           </a>
 
           <div class="collapse" id="howToChange">
-            <div class="card card-body">
+            <div class="card card-body fw-bolder">
               您在收到貨當下，如發現商品有瑕疵疑慮，請勿穿戴避免受傷，並拍照回訊至小幫手，會有專人盡快為您處理。
             </div>
           </div>

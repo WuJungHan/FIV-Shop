@@ -24,7 +24,7 @@
         <thead>
           <tr>
             <th scope="col" class="text-center">商品資訊</th>
-            <th scope="col">商品名稱 <i class="bi bi-alarm"></i></th>
+            <th scope="col" class="d-none d-sm-table-cell">商品名稱 <i class="bi bi-alarm"></i></th>
             <th scope="col">數量</th>
             <th scope="col" class="d-none d-md-table-cell">單價</th>
             <th scope="col" class="d-none d-md-table-cell">折扣價</th>
@@ -35,18 +35,20 @@
         <tbody>
           <tr v-for="item in cartProduct" :key="item.id">
             <td class="d-flex align-items-center">
-              <!-- <img :src="item.product.imageUrl" alt="" style="width:150px;height:150px;"> -->
-              <div
+              <div class="d-black d-sm-none text-center">
+              {{ item.product.title }}
+              </div>
+              <img
                 style="
                   width: 150px;
                   height: 150px;
                   background-size: cover;
                   background-position: center;
                 "
-                :style="{ 'background-image': `url(${item.product.imageUrl})` }"
-              ></div>
+                :src="item.product.imageUrl"
+              >
             </td>
-            <td>{{ item.product.title }}</td>
+            <td class="d-none d-sm-table-cell">{{ item.product.title }}</td>
             <td>
               <input
                 min="1"
@@ -79,11 +81,10 @@
       </table>
     </div>
     <!-- 計算區塊 -->
-    <div class="row">
-      <div class="col-0 col-md-7"></div>
-      <div class="col-12 col-md-1">共{{ cartProduct.length }}項</div>
+    <div class="row justify-content-md-end text-md-end">
+      <div class="col-12 col-md-9">共{{ cartProduct.length }}項</div>
 <!-- {{ $toCurrency(countPrice) }} -->
-      <div class="col-12 col-md-4">總金額: {{ $toCurrency(countTotalPrice) }}</div>
+      <div class="col-12 col-md-3">總金額: {{ $toCurrency(countTotalPrice) }}</div>
     </div>
     <!-- 下一步 -->
     <div class="mb-3">
