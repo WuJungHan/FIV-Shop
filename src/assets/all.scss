@@ -21,5 +21,7 @@
 // 輪播Swiper import Swiper css
 @import "~swiper/swiper-bundle.css";
 
+// 全域標籤設定
+@import "./mysetting/base";
 // 個人設定scss
 @import "./mysetting/utilities"

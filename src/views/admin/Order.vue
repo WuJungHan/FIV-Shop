@@ -82,11 +82,11 @@
       <tbody>
         <tr v-for="item in order.products" :key="item.id">
           <td>
-            <divs
+            <img
               style="width=120px;height: 120px;background-size: cover;
             background-position: center; background-repeat:no-repeat;"
-              :style="{ 'background-image': `url(${item.product.imageUrl})` }"
-            ></divs>
+              :src="item.product.imageUrl"
+            >
           </td>
           <td>{{ item.product.title }}</td>
           <td>{{ item.product.category }}</td>
@@ -106,7 +106,7 @@
 
 <script>
 // padeLoading component
-import Loading from '../../components/PageLoading.vue';
+import Loading from '../../components/Loading.vue';
 
 export default {
   components: {

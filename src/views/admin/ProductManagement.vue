@@ -535,7 +535,7 @@
 <script>
 // import { Modal } from 'bootstrap';
 // padeLoading component
-import Loading from '../../components/PageLoading.vue';
+import Loading from '../../components/Loading.vue';
 
 export default {
   components: {

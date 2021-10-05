@@ -2,13 +2,13 @@
   <main>
     <div class="container d-flex justify-content-center mt-3">
       <!-- index 橫幅 -->
-      <swiper
+      <Swiper
         :autoplay="autoplay"
         :navigation="true"
         class="mySwiper border border-3 animate__animated animate__fadeIn"
       >
         <!-- slide 1 -->
-        <swiper-slide
+        <SwiperSlide
           style="
             background: url('https://images.unsplash.com/photo-1498075702571-ecb018f3752d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1057&q=80');
             background-repeat: no-repeat;
@@ -16,9 +16,9 @@
             background-size: cover;
             height: 400px;
           "
-        ></swiper-slide>
+        ></SwiperSlide>
         <!-- slide 2 -->
-        <swiper-slide
+        <SwiperSlide
           style="
             background: url('https://images.unsplash.com/photo-1566325645218-73b67fd824a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80');
             background-repeat: no-repeat;
@@ -26,9 +26,9 @@
             background-size: cover;
             height: 400px;
           "
-        ></swiper-slide>
+        ></SwiperSlide>
         <!-- slide 3 -->
-        <swiper-slide
+        <SwiperSlide
           style="
             background: url('https://images.unsplash.com/photo-1578651559882-286b3b791a3c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
             background-repeat: no-repeat;
@@ -36,9 +36,9 @@
             background-size: cover;
             height: 400px;
           "
-        ></swiper-slide>
+        ></SwiperSlide>
         <!-- slide 4 -->
-        <swiper-slide
+        <SwiperSlide
           style="
             background: url('https://images.unsplash.com/photo-1586878340506-af074f2ee999?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
             background-repeat: no-repeat;
@@ -46,9 +46,9 @@
             background-size: cover;
             height: 400px;
           "
-        ></swiper-slide>
+        ></SwiperSlide>
         <!-- slide 5 -->
-        <swiper-slide
+        <SwiperSlide
           style="
             background: url('https://images.unsplash.com/photo-1585506172580-9564a524231f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
             background-repeat: no-repeat;
@@ -56,8 +56,8 @@
             background-size: cover;
             height: 400px;
           "
-        ></swiper-slide>
-      </swiper>
+        ></SwiperSlide>
+      </Swiper>
       <!-- <div class="mt-3 index-banner"></div> -->
     </div>
     <!-- index 產品分類按鈕 -->

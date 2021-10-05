@@ -176,7 +176,7 @@
 <script>
 // import Card from '../../components/Card.vue';
 // padeLoading component
-import Loading from '@/components/PageLoading.vue';
+import Loading from '../../components/Loading.vue';
 import emitter from '../../assets/javascript/emitter';
 
 export default {
