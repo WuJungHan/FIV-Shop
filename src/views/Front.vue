@@ -48,7 +48,7 @@
               </router-link>
             </li>
           </ul>
-          <ul class="d-inline-block d-lg-flex">
+          <ul class="d-flex justify-content-between">
             <li class="nav-item position-relative">
               <router-link
                 class="nav-link text-white"

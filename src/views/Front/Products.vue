@@ -110,13 +110,13 @@
         </div>
       </div>
       <!-- 主商品card區塊 -->
-      <div class="col-12 col-lg-10 d-flex flex-wrap">
-        <div class="row ps-3 pe-3 p-sm-0">
+      <div class="col-12 col-lg-10 ps-4 pe-4 ">
+        <div class="row d-flex flex-wrap">
         <div
           v-for="item in filterProducts"
           :key="item.id"
-          class="card p-0 mb-3 me-5 my-card animate__animated animate__fadeIn
-          col-12 col-md-3"
+          class="card p-0 mb-3 me-0 me-md-5 my-card animate__animated animate__fadeIn
+          col-12 col-lg-3"
         >
           <!-- card background-image -->
           <div class="my-card-img-div">
@@ -316,9 +316,6 @@ export default {
     box-shadow: 0px 0px 10px #464e46;
   }
 }
-// .my-card-width {
-//   width: 33%;
-// }
 .my-card-img-div {
   overflow: hidden;
 }
